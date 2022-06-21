@@ -10,6 +10,7 @@ import Basket from './Basket/Basket';
 import Detail from './Detail/Detail';
 import Find from './Find/Find';
 import Reservation from './Reservation/Reservation';
+import Promotion from './Promotion/Promotion';
 
 function Router() {
   return (
@@ -20,9 +21,10 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/detail" element={<Detail />} />
-        <Route path="/find" element={<Find />} />
+        <Route path="/findstay/:name" element={<Detail />} />
+        <Route path="/findstay" element={<Find />} />
         <Route path="/reservation" element={<Reservation />} />
+        <Route path="/promotion" element={<Promotion />} />
       </Routes>
       <Footer />
     </BrowserRouter>
