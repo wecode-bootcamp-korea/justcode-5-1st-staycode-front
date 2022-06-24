@@ -11,6 +11,7 @@ import Detail from './Detail/Detail';
 import Find from './Find/Find';
 import Reservation from './Reservation/Reservation';
 import Promotion from './Promotion/Promotion';
+import DetailRoom from './Detail/DetailRoom';
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/findstay/:name" element={<Detail />} />
+        <Route path="/findstay/1/1" element={<DetailRoom />} />
         <Route path="/findstay" element={<Find />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/promotion" element={<Promotion />} />
