@@ -1,3 +1,10 @@
-.container {
-  font-weight: 400;
+.main {
+  .main_container {
+    .main_contents {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+    }
+  }
 }
+
