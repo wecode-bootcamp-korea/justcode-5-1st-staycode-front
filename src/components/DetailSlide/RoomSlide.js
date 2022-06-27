@@ -6,7 +6,7 @@ function RoomSlide({ img, name, roomData, search }) {
   return (
     <div className={styles.imgWrapper}>
       {/* 요기 링크 룸데이터의 id 값 추출해서 대입하기 */}
-      <Link to={`/findstay/${name}?${search}`}>
+      <Link to={`/findstay/${name}/${search}`}>
         <img className={styles.img} src={img} alt="룸이미지" />
         <div className={styles.contents}>
           <div className={styles.namePrice}>
