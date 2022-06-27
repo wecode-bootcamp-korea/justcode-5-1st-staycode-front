@@ -1,0 +1,49 @@
+{
+  "main_img": [
+    {
+      "id": 1,
+      "main_image_url": "https://images.prismic.io/stayfolio-production/545b55ef-ebc8-44d4-aa2e-fd44bbe540ea_main_top+1800_850.jpg",
+      "sub_image_url": "https://images.prismic.io/stayfolio-production/1a0bf75a-5b6b-4dd1-8bae-64d27e824dc1_03+logo+3.jpg",
+      "content": "동해 앞에서\r\n쉬어가는 유목민의 집",
+      "title": "스테이유목",
+      "price": 230000,
+      "location": "부산"
+    },
+    {
+      "id": 2,
+      "main_image_url": "https://images.prismic.io/stayfolio-production/61fc5eee-bdd0-4874-afd5-0e22d44ff8d9_%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5.jpg",
+      "sub_image_url": "https://images.prismic.io/stayfolio-production/3fb422de-f348-4f64-93fe-04ad6851e98e_%E1%84%8B%E1%85%A7%E1%84%82%E1%85%B3+%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9+%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A9%E1%86%BC.jpg",
+      "content": "여느 날과 다른\r\n특별함으로",
+      "title": "여느",
+      "price": 250000,
+      "location": "인천"
+    },
+    {
+      "id": 3,
+      "main_image_url": "https://images.prismic.io/stayfolio-production/c5a29547-e1c1-45d3-8e42-085757ba7b5c_main_top+1800_850.jpg",
+      "sub_image_url": "https://images.prismic.io/stayfolio-production/d21fbdc4-636a-4b5c-b546-76d0c0b82204_03+logo+3.jpg",
+      "content": "골짜기 아래에서\r\n유럽의 빈티지를 그리다",
+      "title": "탈하우스",
+      "price": 380000,
+      "location": "서울"
+    },
+    {
+      "id": 4,
+      "main_image_url": "https://images.prismic.io/stayfolio-production/28286709-e4d9-4c5c-925a-bba31c6bf295_main_top+1800_850_%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A9%E1%86%BC.jpg",
+      "sub_image_url": "https://images.prismic.io/stayfolio-production/ea3c2161-0192-4920-8ecb-beb1a874a90a_03+logo+3+%281%29.jpg",
+      "content": "나의 작은\r\n올리브 나무",
+      "title": "토브카키",
+      "price": 290000,
+      "location": "제주"
+    },
+    {
+      "id": 5,
+      "main_image_url": "https://images.prismic.io/stayfolio-production/f49754f9-943e-42db-b76a-f0e29d706d04_main+banner+3.0.jpg",
+      "sub_image_url": "https://images.prismic.io/stayfolio-production/5fccc2c0-9ae6-4e6e-83fd-203d37d944aa_logo+3.0.jpg",
+      "content": "현재의\r\n소중한 순간을 담는 곳",
+      "title": "Wabi Sabi House",
+      "price": 320000,
+      "location": "대전"
+    }
+  ]
+}
