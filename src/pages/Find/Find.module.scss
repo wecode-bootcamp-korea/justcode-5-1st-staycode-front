@@ -1,0 +1,14 @@
+.findHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 70px 0px 70px;
+  padding-bottom: 70px;
+  border-bottom: 3px solid black;
+  h1 {
+    font-size: 25px;
+    letter-spacing: 0.6rem;
+    margin-bottom: 15px;
+  }
+}
