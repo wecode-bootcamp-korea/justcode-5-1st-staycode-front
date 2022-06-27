@@ -12,7 +12,7 @@ import {
 const totalSlides = 2;
 
 function RoomSlider(props) {
-  const { name, roomData } = props;
+  const { name, roomData, search } = props;
   //데이터 셋 get
   const [slideList, setSlideList] = useState([img1, img2, img3]);
 
@@ -55,7 +55,13 @@ function RoomSlider(props) {
       <div className={styles.roomImg}>
         <div className={styles.slideBox} ref={slideRef}>
           {slideList.map((event, idx) => (
-            <RoomSlide img={event} key={idx} name={name} roomData={roomData} />
+            <RoomSlide
+              img={event}
+              key={idx}
+              name={name}
+              roomData={roomData}
+              search={search}
+            />
           ))}
         </div>
       </div>

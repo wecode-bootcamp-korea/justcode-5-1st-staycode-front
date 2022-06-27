@@ -3,18 +3,19 @@ import styles from './DetailRoom.module.scss';
 import DetailSearchBar from '../../components/DetailSearchBar/DetailSearchBar';
 import DetailFqa from '../../components/DetailFqa/DetailFqa';
 import Slider from '../../components/DetailSlide/Slider';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 function DetailRoom() {
   const buttonOnOff = true;
   const params = useParams();
   const { name, roomid } = params;
+  const location = useLocation();
 
   //데이터
   const [roomData, setRoomData] = useState([]);
 
   useEffect(() => {
-    fetch('', {
+    fetch(`/${location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
