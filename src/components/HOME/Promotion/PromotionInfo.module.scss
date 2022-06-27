@@ -1,0 +1,84 @@
+.link:hover,
+.link:link,
+.link:active,
+.link:visited {
+  text-decoration: none;
+}
+
+.promotion_img {
+  position: relative;
+  width: 1290px;
+  height: 540px;
+  display: flex;
+
+  .main_img {
+    width: 960px;
+    height: 540px;
+  }
+
+  .sub_box {
+    width: 330px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-weight: bold;
+
+    .promotion {
+      font-size: 15px;
+      letter-spacing: 11px;
+    }
+
+    .title {
+      font-size: 27px;
+      margin-top: 60px;
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+
+    .content {
+      margin-top: 20px;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .accomodation_id {
+      font-size: 22px;
+      margin-top: 170px;
+    }
+
+    .location_stay_type {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .max_guest {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .price {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .due_date_box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: black;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    .due_date {
+      color: white;
+      white-space: pre-wrap;
+      text-align: center;
+      line-height: 25px;
+    }
+  }
+}

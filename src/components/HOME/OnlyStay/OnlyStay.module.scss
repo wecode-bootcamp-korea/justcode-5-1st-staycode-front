@@ -1,0 +1,38 @@
+.slider {
+  position: relative;
+  width: 1290px;
+  height: 620px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .onlystay_title {
+    margin-top: 120px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .slider_list {
+    position: relative;
+
+    .slider_content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      overflow-x: visible;
+      transform: translateX(0);
+      transition-duration: 0.5s;
+    }
+  }
+
+  .slider_btn {
+    position: absolute;
+    left: 48%;
+    bottom: 0;
+  }
+}
