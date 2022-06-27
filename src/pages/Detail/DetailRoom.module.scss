@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .imgContainer {
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .contents {
+      width: 25%;
+      padding-left: 40px;
+      .roomName {
+        margin-top: 40px;
+        font-size: 40px;
+      }
+      .roomContent {
+        margin-top: 150px;
+        margin-bottom: 150px;
+      }
+    }
+  }
+}
