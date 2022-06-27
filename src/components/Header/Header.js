@@ -19,6 +19,10 @@ function Header() {
   const [dateModal, setDateModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
   const [city, setCity] = useState('');
+  const [date, setDate] = useState({
+    check_in: '',
+    check_out: '',
+  });
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,7 +44,11 @@ function Header() {
     setDateModal(false);
     setLocationModal(false);
   }
-
+  function onDateChange(e) {
+    setDate(prev => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  }
   return (
     <>
       <header className={css.header}>
@@ -52,7 +60,7 @@ function Header() {
             }}
           >
             <span>STAY</span>
-            <span>FOLIO</span>
+            <span>CODE</span>
           </div>
           <div className={css.headerLeft_icons}>
             <div onClick={showLocationModal}>
@@ -71,7 +79,7 @@ function Header() {
               <Link key={el.url} to={el.url}>
                 <strong
                   className={
-                    location.pathname === el.url ? `${css.active}` : ``
+                    location.pathname.includes(el.url) ? `${css.active}` : ``
                   }
                 >
                   {el.text}
@@ -85,7 +93,28 @@ function Header() {
         </div>
       </header>
       {dateModal ? (
-        <Modal setDateModal={setDateModal}></Modal>
+        <Modal setDateModal={setDateModal} date={date}>
+          <form className={css.dateForm}>
+            <div>
+              <label for="checkIn">체크 인</label>
+              <input
+                type="date"
+                name="check_in"
+                id="checkIn"
+                onChange={onDateChange}
+              />
+            </div>
+            <div>
+              <label for="checkOut">체크 아웃</label>
+              <input
+                type="date"
+                id="checkOut"
+                name="check_out"
+                onChange={onDateChange}
+              />
+            </div>
+          </form>
+        </Modal>
       ) : locationModal ? (
         <Modal
           city={city}
