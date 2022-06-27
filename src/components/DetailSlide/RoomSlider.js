@@ -11,9 +11,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 const totalSlides = 2;
 
-function RoomSlider() {
+function RoomSlider(props) {
+  const { name, roomData } = props;
   //데이터 셋 get
   const [slideList, setSlideList] = useState([img1, img2, img3]);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
   const nextSlide = () => {
@@ -53,7 +55,7 @@ function RoomSlider() {
       <div className={styles.roomImg}>
         <div className={styles.slideBox} ref={slideRef}>
           {slideList.map((event, idx) => (
-            <RoomSlide img={event} key={idx} />
+            <RoomSlide img={event} key={idx} name={name} roomData={roomData} />
           ))}
         </div>
       </div>

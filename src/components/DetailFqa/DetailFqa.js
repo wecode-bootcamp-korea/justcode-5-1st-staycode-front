@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './DetailFqa.module.scss';
 
-function DetailFqa(prop) {
+function DetailFqa({ roomData }) {
   return (
     <div className={styles.fqa}>
       <div className={styles.fqaName}>
