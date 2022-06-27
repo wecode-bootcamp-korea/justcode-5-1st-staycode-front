@@ -4,7 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-function Modal({ setDateModal, children, setLocationModal, city, setCity }) {
+function Modal({
+  setDateModal,
+  children,
+  setLocationModal,
+  city,
+  setCity,
+  date,
+}) {
   function hideDateModal() {
     setDateModal(false);
   }
@@ -37,7 +44,13 @@ function Modal({ setDateModal, children, setLocationModal, city, setCity }) {
               closeModal();
               setCity('');
             }}
-            to={`findstay?city=${city}`}
+            to={
+              city
+                ? `findstay?city=${city}`
+                : date
+                ? `findstay?check_in=${date.check_in}&check_out=${date.check_out}`
+                : '/findstay'
+            }
           >
             SEARCH
           </Link>

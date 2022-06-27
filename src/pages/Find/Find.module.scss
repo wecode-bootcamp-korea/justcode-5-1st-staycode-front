@@ -12,3 +12,15 @@
     margin-bottom: 15px;
   }
 }
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0px 80px;
+  border-bottom: 1px solid #e8e8e8;
+  margin: 60px 70px 0px 70px;
+}
+.pageMove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

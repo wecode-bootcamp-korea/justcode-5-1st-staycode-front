@@ -1,0 +1,99 @@
+.stayWrapper {
+  & + & {
+    margin-bottom: 80px;
+  }
+}
+.stayName {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.stayType {
+  font-size: 15px;
+  letter-spacing: 0.2rem;
+}
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.stayInfo {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  a {
+    margin-top: 70px;
+    color: black;
+    font-weight: 700;
+    padding-bottom: 5px;
+    text-decoration: none;
+    border-bottom: 2px solid black;
+  }
+}
+.stayImageWrapper {
+  width: 400px;
+  height: 230px;
+  overflow-x: hidden;
+  position: relative;
+}
+.imageSwiper {
+  display: flex;
+  width: 2000px;
+  height: 100%;
+}
+.stayImage {
+  position: relative;
+  width: 100%;
+  background-size: cover;
+}
+.arrowLeft {
+  font-size: 30px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  color: #ffffff;
+  left: 10px;
+  transform: translateY(-50%);
+  opacity: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  transition: opacity 0.3s ease-in-out;
+}
+.arrowRight {
+  position: absolute;
+  font-size: 30px;
+  color: #ffffff;
+  z-index: 2;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.inactive {
+  cursor: default;
+  color: #999999;
+}
+
+.stayImageWrapper:hover .arrowRight {
+  opacity: 1;
+}
+.stayImageWrapper:hover .arrowLeft {
+  opacity: 1;
+}
+.whatever {
+  width: 100%;
+  position: absolute;
+  top: 200px;
+  left: 170px;
+  display: flex;
+}
+.swiperPagination {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-right: 7px;
+  border-radius: 5px;
+}

@@ -3,9 +3,11 @@
   padding: 15px;
   position: sticky;
   top: 0;
+  z-index: 97;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e8e8e8;
+  background-color: white;
 }
 .headerLeft {
   display: flex;
@@ -60,7 +62,7 @@
     letter-spacing: 0.65rem;
   }
   span:last-child {
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.65rem;
   }
   &:hover {
     cursor: pointer;
@@ -112,4 +114,28 @@
   background-color: black;
   color: white;
   box-shadow: 5px 5px 15px 5px #c2c2c2;
+}
+
+.dateForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 80px;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    label {
+      margin-bottom: 15px;
+    }
+    input {
+      &:hover {
+        cursor: pointer;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }

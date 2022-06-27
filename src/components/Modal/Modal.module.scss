@@ -10,10 +10,12 @@
   animation-name: modalshow;
   animation-duration: 0.8s;
   opacity: 1;
+  z-index: 99;
 }
 .overlay {
   position: fixed;
   top: 0;
+  z-index: 98;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
