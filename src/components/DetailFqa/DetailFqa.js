@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './DetailFqa.module.scss';
 
 function DetailFqa({ roomData }) {
+  //전달받은 roomData로 Fqa 표데이터에 뿌려주기
   return (
     <div className={styles.fqa}>
       <div className={styles.fqaName}>
@@ -21,14 +22,14 @@ function DetailFqa({ roomData }) {
               </tr>
               {/* 맵돌리기 */}
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>201호</td>
+                <td>2</td>
+                <td>3</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>301호</td>
+                <td>4</td>
+                <td>6</td>
               </tr>
             </tbody>
           </table>
@@ -42,14 +43,14 @@ function DetailFqa({ roomData }) {
               </tr>
               {/* 맵돌리기 */}
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>201호</td>
+                <td>100000</td>
+                <td>150000</td>
               </tr>
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>301호</td>
+                <td>200000</td>
+                <td>250000</td>
               </tr>
             </tbody>
           </table>

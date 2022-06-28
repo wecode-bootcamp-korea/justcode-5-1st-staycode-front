@@ -9,45 +9,49 @@ import Map from '../../components/Map/Map';
 
 function Detail() {
   const buttonOnOff = false;
+  const params = useParams();
+  const { name } = params;
   const location = useLocation();
   const { search } = location;
 
-  const params = useParams();
-  const { name } = params;
+  //데이터 get
+  const [accoData, setAccoData] = useState();
+  const [roomData, setRoomData] = useState();
 
-  //데이터
-  const [accoData, setAccoData] = useState([]);
-  const [roomData, setRoomData] = useState([]);
-
+  //숙소 데이터 패치
   useEffect(() => {
-    fetch(`/${search}`, {
-      method: 'GET',
-    })
+    fetch(`http://localhost:8000/findstay/${name}`, { method: 'GET' })
       .then(res => res.json())
-      .then(data => {
-        setAccoData(data);
+      .then(res => {
+        console.log('fetch');
+        setAccoData(res);
+        console.log('fetch_end');
       });
-  }, []);
+  }, [name]);
+  console.log(accoData);
 
+  //룸 데이터 패치
   useEffect(() => {
-    fetch('', {
-      method: 'GET',
-    })
+    fetch(`http://localhost:8000/findstay/${name}`, { method: 'GET' })
       .then(res => res.json())
-      .then(data => {
-        setRoomData(data);
+      .then(res => {
+        console.log('fetch');
+        setRoomData(res);
+        console.log('fetch_end');
       });
-  }, []);
+  }, [name]);
+  console.log(roomData);
 
   return (
     <div className={styles.container}>
       <Slider sliderContents={true} />
       <DetailSearchBar buttonOnOff={buttonOnOff} />
+      {/* 룸 슬라이더로 roomdata 전달 */}
       <RoomSlider name={name} roomData={roomData} search={search} />
-      <div className={styles.accoName}>숙소이름</div>
+      <div className={styles.accoName}></div>
       <div className={styles.centerLine} />
-      <div className={styles.content}>내용</div>
-      <div className={styles.address}>주소</div>
+      <div className={styles.content}></div>
+      <div className={styles.address}></div>
       <div className={styles.map}>
         <Map accoData={accoData} />
       </div>

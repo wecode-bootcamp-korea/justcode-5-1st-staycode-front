@@ -3,10 +3,11 @@ import styles from './RoomSlide.module.scss';
 import { Link } from 'react-router-dom';
 
 function RoomSlide({ img, name, roomData, search }) {
+  // const roomId=roomData.~  로 받아와서
   return (
     <div className={styles.imgWrapper}>
       {/* 요기 링크 룸데이터의 id 값 추출해서 대입하기 */}
-      <Link to={`/findstay/${name}/${search}`}>
+      <Link to={`/findstay/${name}/`}>
         <img className={styles.img} src={img} alt="룸이미지" />
         <div className={styles.contents}>
           <div className={styles.namePrice}>

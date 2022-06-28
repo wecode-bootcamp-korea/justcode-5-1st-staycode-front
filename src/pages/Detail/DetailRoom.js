@@ -3,19 +3,22 @@ import styles from './DetailRoom.module.scss';
 import DetailSearchBar from '../../components/DetailSearchBar/DetailSearchBar';
 import DetailFqa from '../../components/DetailFqa/DetailFqa';
 import Slider from '../../components/DetailSlide/Slider';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 
 function DetailRoom() {
   const buttonOnOff = true;
   const params = useParams();
-  const { name, roomid } = params;
+  const { name } = params;
+
+  //search를 이용해서 checkin,checkout 정보 reservation에 전달
   const location = useLocation();
+  const { search } = location;
 
   //데이터
   const [roomData, setRoomData] = useState([]);
-
+  //룸데이터 get
   useEffect(() => {
-    fetch(`/${location.search}`, {
+    fetch(`/`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -26,7 +29,9 @@ function DetailRoom() {
 
   return (
     <div className={styles.container}>
-      <h1>B O O K I N G</h1>
+      <div>
+        <h2>B O O K I N G</h2>
+      </div>
       <DetailSearchBar buttonOnOff={buttonOnOff} />
       <div className={styles.imgContainer}>
         <div className={styles.contents}>
@@ -43,8 +48,11 @@ function DetailRoom() {
         </div>
         <Slider silderContents={false} />
       </div>
-      <div className={styles.featuresBox}>특징</div>
-      <div className={styles.amenities}>어매니티스</div>
+      {/* <div className={styles.featuresBox}>특징</div>
+      <div className={styles.amenities}>어매니티스</div> */}
+      <Link to={`/reservation${search}`}>
+        <button className={styles.payBtn}>결제하기</button>
+      </Link>
       <DetailFqa roomData={roomData} />
     </div>
   );

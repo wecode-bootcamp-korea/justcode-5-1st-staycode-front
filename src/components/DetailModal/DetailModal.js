@@ -9,6 +9,7 @@ function DetailModal(props) {
   // const [checkIN, setCheckIN] = useState(new Date());
   // const [checkOut, setCheckOut] = useState(new Date());
 
+  //어떤 날짜를 선택했는지 담은 state date[0]는 체크인 , data[1]은 체크아웃
   const [date, setDate] = useState(new Date());
 
   //예약이 안되는 날짜 담은 state
@@ -40,7 +41,7 @@ function DetailModal(props) {
             </p>
           ) : (
             <p>
-              <span>Default selected date:</span> {date.toDateString()}
+              <span>현재 선택된 날짜:</span> {date.toDateString()}
             </p>
           )}
           <button className={styles.close} onClick={close}>

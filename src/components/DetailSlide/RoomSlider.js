@@ -9,11 +9,13 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+
+//토탈 이미지 셋 백엔드 연동되면 4로 변경
 const totalSlides = 2;
 
 function RoomSlider(props) {
   const { name, roomData, search } = props;
-  //데이터 셋 get
+  //디테일 페이지 상단 이미지 데이터 셋 props로 받은 거 따로 저장
   const [slideList, setSlideList] = useState([img1, img2, img3]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
