@@ -1,0 +1,14 @@
+.container {
+  border: 1px solid black;
+  width: 200px;
+  height: 150px;
+  background: black;
+  color: white;
+  overflow-y: scroll;
+  font-size: 10px;
+  z-index: 8;
+  opacity: 1;
+  input[id='cb1'] {
+    display: none;
+  }
+}

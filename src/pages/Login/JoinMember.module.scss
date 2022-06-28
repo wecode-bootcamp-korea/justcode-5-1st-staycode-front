@@ -1,0 +1,286 @@
+.wrap {
+  display: grid;
+  place-items: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid white;
+  width: 600px;
+  height: 300px;
+}
+pose {
+  position: relative;
+}
+.pose {
+  position: absolute;
+  margin-left: -70px;
+  font-size: 15px;
+  margin-top: -8px;
+}
+select {
+  width: 330px;
+  border: none;
+}
+.first {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid white;
+  display: inline;
+  width: 200px;
+  font-size: 15px;
+  margin-top: 10px;
+  .log {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 15px;
+  }
+}
+.line_front {
+  border-bottom: 1px solid black;
+  width: 350px;
+
+  margin-top: 30px;
+}
+.line {
+  border-bottom: 1px solid black;
+  width: 350px;
+
+  margin-top: 30px;
+}
+
+.email_section {
+  border: 1px solid white;
+  width: 200px;
+
+  margin-top: 20px;
+  font-size: 15px;
+  input {
+    margin-top: 10px;
+    border: none;
+    font-size: 5px;
+    border-bottom: 1px solid #bbbbbb;
+    width: 350px;
+    color: #bbbbbb;
+    margin-left: -80px;
+  }
+}
+
+.password_section {
+  border: 1px solid white;
+  width: 200px;
+
+  margin-top: 15px;
+  input {
+    border: none;
+    font-size: 5px;
+    border-bottom: 1px solid #bbbbbb;
+    width: 350px;
+    color: #bbbbbb;
+  }
+}
+
+.login_section {
+  border: 1px solid black;
+  width: 200px;
+
+  margin-top: 10px;
+  color: white;
+  background: black;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 15px;
+}
+
+.join_membership {
+  border: 1px solid black;
+  width: 200px;
+
+  margin-top: 10px;
+  color: black;
+  background: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 15px;
+}
+
+.find_password {
+  width: 350px;
+  height: 30px;
+  font-size: 10px;
+  margin-top: 30px;
+}
+find_butt {
+  position: relative;
+}
+.find_butt {
+  font-size: 2px;
+  border: none;
+  background: white;
+}
+.sent {
+  border: 1px solid black;
+  width: 350px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 18px;
+  color: white;
+  background: black;
+}
+agree_num {
+  position: relative;
+}
+.find_num {
+  font-size: 15px;
+  border: none;
+  background: white;
+}
+.agree_num {
+  position: absolute;
+  font-size: 15px;
+  background: white;
+  margin-left: 140px;
+}
+.agree_butt1 {
+  position: absolute;
+  font-size: 1px;
+  margin-left: 600px;
+}
+func {
+  position: relative;
+}
+.func {
+  position: absolute;
+  margin-left: -70px;
+  font-size: 13px;
+  .func1 {
+    margin-left: 20px;
+  }
+  .func2 {
+    margin-left: 30px;
+  }
+  .func3 {
+    margin-left: 90px;
+  }
+}
+
+.email_section1 {
+  border: 1px solid white;
+  width: 200px;
+
+  margin-top: 20px;
+  font-size: 11px;
+
+  input {
+    margin-top: 10px;
+    border: none;
+    font-size: 5px;
+    border-bottom: 1px solid #bbbbbb;
+    width: 350px;
+    color: #bbbbbb;
+    margin-left: -80px;
+  }
+}
+.phone {
+  font-size: 8px;
+  margin-top: -5px;
+}
+.korea {
+  font-size: 8px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  width: 350px;
+  margin-left: -80px;
+}
+.find_butt {
+  position: absolute;
+  font-size: 2px;
+  margin-left: 2px;
+  border: 1px solid black;
+  width: 350px;
+  background: black;
+  color: white;
+  width: 350px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.find_butt1 {
+  position: absolute;
+
+  font-size: 1px;
+  margin-left: 0px;
+  border: none;
+  background: white;
+}
+.agree_butt1 {
+  position: absolute;
+  font-size: 1px;
+  margin-left: 120px;
+  border: none;
+  background: white;
+}
+.find_password1 {
+  border: 1px solid white;
+  width: 350px;
+  height: 20px;
+  margin-left: -15;
+  margin-top: 10px;
+  border-bottom: 1px solid black;
+}
+.gap {
+  margin-left: -140px;
+}
+
+.font {
+  font-size: 15px;
+  margin-left: -130px;
+}
+.find_butt {
+  position: absolute;
+  margin-top: -10px;
+  font-size: 1px;
+  margin-left: 2px;
+  border: 1px solid black;
+  background: black;
+  color: white;
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.gap_line {
+  position: relative;
+}
+.gap_line {
+  position: absolute;
+
+  width: 200px;
+  height: 30px;
+}
+
+toggle {
+  position: relative;
+}
+.toggle {
+  border: none;
+  button {
+    position: absolute;
+    border: none;
+    margin-left: 300px;
+    margin-top: -15px;
+    input {
+      display: none;
+    }
+  }
+}
+
+.join_member {
+  border: 1px solid black;
+  width: 350px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 18px;
+  color: white;
+  background: black;
+}
