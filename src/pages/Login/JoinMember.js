@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Dacument from './Dacument';
+import { AiOutlineDown } from 'react-icons/ai';
 
 function JoinMember() {
   //   const navigate = useNavigate();
@@ -13,6 +14,7 @@ function JoinMember() {
   const [phone, setPhone] = useState('');
   const [pass, setPass] = useState('');
   const [showTimer, setShowTimer] = useState(false);
+  const [string, setString] = useState('');
   const [inputs, setInputs] = useState({
     email: '',
     name: '',
@@ -35,6 +37,7 @@ function JoinMember() {
     console.log('phone: ', phone);
 
     if (!email.includes('@')) {
+      const string = '@ 가 빠졌습니다.';
       return false;
     }
 
@@ -68,7 +71,8 @@ function JoinMember() {
       });
       alert('가입이 되었습니다. ');
     } else {
-      alert('가입에 실패하였습니다.');
+      console.log('string: ', string);
+      alert(`${string} 가입에 실패하였습니다.`);
       setEmail('');
       setPassword('');
       setName('');
@@ -193,7 +197,10 @@ function JoinMember() {
           />
           <span class={css.font}>서비스 이용 약관 동의(필수)</span>
           <div className={css.toggle}>
-            <button onClick={() => setShowTimer(!showTimer)}> toggle </button>
+            <button onClick={() => setShowTimer(!showTimer)}>
+              {' '}
+              <AiOutlineDown />{' '}
+            </button>
             <div className={css.find_password_box}>
               {showTimer && <Dacument />}
             </div>
