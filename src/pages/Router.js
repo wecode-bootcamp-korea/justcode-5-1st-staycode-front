@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -14,9 +14,16 @@ import Promotion from './Promotion/Promotion';
 import DetailRoom from './Detail/DetailRoom';
 
 function Router() {
+  const [dateModal, setDateModal] = useState(false);
+  const [locationModal, setLocationModal] = useState(false);
   return (
     <BrowserRouter>
-      <Header />
+      <Header
+        dateModal={dateModal}
+        setDateModal={setDateModal}
+        locationModal={locationModal}
+        setLocationModal={setLocationModal}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -24,7 +31,15 @@ function Router() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/findstay/:name" element={<Detail />} />
         <Route path="/findstay/:name/:roomid" element={<DetailRoom />} />
-        <Route path="/findstay" element={<Find />} />
+        <Route
+          path="/findstay"
+          element={
+            <Find
+              locationModal={locationModal}
+              setLocationModal={setLocationModal}
+            />
+          }
+        />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/promotion" element={<Promotion />} />
       </Routes>

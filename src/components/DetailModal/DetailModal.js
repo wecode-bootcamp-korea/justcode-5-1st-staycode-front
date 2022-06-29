@@ -6,8 +6,6 @@ import 'react-calendar/dist/Calendar.css';
 
 function DetailModal(props) {
   const { open, close } = props;
-  // const [checkIN, setCheckIN] = useState(new Date());
-  // const [checkOut, setCheckOut] = useState(new Date());
 
   const [date, setDate] = useState(new Date());
 

@@ -1,10 +1,8 @@
 .stayWrapper {
-  & + & {
-    margin-bottom: 80px;
-  }
+  margin-bottom: 80px;
 }
 .stayName {
-  font-size: 30px;
+  font-size: 27px;
   margin-bottom: 10px;
 }
 .stayType {
@@ -43,6 +41,9 @@
   position: relative;
   width: 100%;
   background-size: cover;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .arrowLeft {
   font-size: 30px;

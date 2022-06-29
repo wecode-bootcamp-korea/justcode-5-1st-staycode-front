@@ -42,7 +42,7 @@ function MainSlider({ mainImgList }) {
   function handleSwitching(dir) {
     handleMainSlider(curIdx + dir);
   }
-  console.log(mainImgList);
+
   return (
     <div className={css.slider}>
       <div className={css.slider_list}>
