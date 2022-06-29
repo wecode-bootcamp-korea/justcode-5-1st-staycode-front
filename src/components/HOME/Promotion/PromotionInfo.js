@@ -19,10 +19,7 @@ const PromotionInfo = ({
     const today = new Date();
     const temp = pro_end_date - today;
     const due_date = new Date(temp).getDate();
-    console.log(pro_end); //2012
-    console.log(pro_end_date); //sat
-    console.log(today); //sat
-    console.log(temp); //3123124
+
     if (temp >= 0) {
       if (due_date >= 2) {
         const left = 'DAYS\r\nLEFT!';
@@ -40,6 +37,7 @@ const PromotionInfo = ({
       return <div className={css.due_date}>{closed}</div>;
     }
   }
+  const price2 = price.toLocaleString();
   return (
     <Link to="/" className={css.link}>
       <li className={css.promotion_img}>
@@ -53,7 +51,7 @@ const PromotionInfo = ({
             <span className={css.stay_type}> {stay_type}</span>
           </p>
           <p className={css.max_guest}>최대 {max_guest}명</p>
-          <p className={css.price}>₩{price}</p>
+          <p className={css.price}>₩{price2}</p>
         </div>
         <img className={css.main_img} src={main_image_url} alt="main" />
 

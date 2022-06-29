@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import css from './OnlyStayImg.module.scss';
 
 const OnlyStayImg = ({ main_image_url, title, location, price }) => {
+  const price2 = price.toLocaleString();
   return (
     <Link to="/" className={css.link}>
       <li className={css.onlystay_img}>
@@ -11,7 +12,7 @@ const OnlyStayImg = ({ main_image_url, title, location, price }) => {
           <p className={css.title}>{title}</p>
           <p className={css.location_price}>
             <span className={css.location}>{location} </span>
-            <span className={css.price}>₩{price}</span>
+            <span className={css.price}>₩{price2}</span>
           </p>
           <p className={css.read_more}>read more</p>
         </div>
