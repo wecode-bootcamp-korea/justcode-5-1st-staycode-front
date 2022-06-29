@@ -5,12 +5,15 @@
   margin: 0 auto;
   height: 650px;
   overflow: hidden;
+
   .slideBox {
-    width: 100%;
+    width: 100vh;
+    height: 650px;
     display: flex;
   }
   .btn1 {
     position: absolute;
+    width: 50px;
     height: 60px;
     background-color: rgba(0, 0, 0, 0.4);
     padding: 15px 20px 15px 20px;
@@ -23,6 +26,8 @@
   }
   .btn2 {
     position: absolute;
+    width: 50px;
+
     right: 0;
     top: 50%;
     height: 60px;
