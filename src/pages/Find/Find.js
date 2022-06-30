@@ -50,9 +50,7 @@ function Find({ locationModal, setLocationModal }) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
-        await fetch(`http://localhost:8000/findstay${location.search}`, {
-          method: 'GET',
-        })
+
       ).json();
       setData(result.list);
     };

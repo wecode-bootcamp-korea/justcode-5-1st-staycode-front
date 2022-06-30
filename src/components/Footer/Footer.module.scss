@@ -1,2 +1,216 @@
-.container {
+.wrapper {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-template-rows: 200px;
+}
+
+.wrapup {
+  position: fixed;
+  border: 1px solid #f5f5f5;
+  width: 100vw;
+  background-color: #f5f5f5;
+  height: 630px;
+  //color: gray;
+}
+
+aBout,
+point,
+nEws,
+cAreers,
+cent,
+btt1,
+btt2,
+btt3,
+open,
+open1,
+info,
+icon,
+face,
+insta,
+naver,
+youtu,
+stay,
+folio {
+  position: relative;
+}
+.aBout {
+  position: absolute;
+  margin-left: 140px;
+  font-size: 20px;
+  margin-top: 90px;
+}
+.point {
+  position: absolute;
+  margin-left: 140px;
+  font-size: 20px;
+  margin-top: 140px;
+}
+.nEws {
+  position: absolute;
+  margin-left: 140px;
+  font-size: 20px;
+  margin-top: 190px;
+}
+.cAreers {
+  position: absolute;
+  margin-left: 140px;
+  font-size: 20px;
+  margin-top: 240px;
+}
+
+.cent {
+  position: absolute;
+  margin-left: 530px;
+  font-size: 25px;
+  margin-top: 90px;
+}
+
+.btt1 {
+  position: absolute;
+  margin-left: 530px;
+  font-size: 10px;
+  margin-top: 140px;
+  border: none;
+  width: 70px;
+  border-radius: 5%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.btt2 {
+  position: absolute;
+  margin-left: 610px;
+  font-size: 10px;
+  margin-top: 140px;
+  border: 1px solid black;
+  border-radius: 5%;
+  background-color: #f5f5f5;
+  color: black;
+  padding: 10px;
+  width: 70px;
+}
+
+.btt3 {
+  position: absolute;
+  margin-left: 690px;
+  font-size: 10px;
+  margin-top: 140px;
+  border: 1px solid black;
+  border-radius: 5%;
+  background-color: #f5f5f5;
+  color: black;
+  padding: 10px;
+  width:70px;
+}
+
+.open {
+  position: absolute;
+  margin-left: 530px;
+  font-size: 15px;
+  margin-top: 190px;
+}
+
+.open1 {
+  position: absolute;
+  margin-left: 530px;
+  font-size: 15px;
+  margin-top: 220px;
+}
+
+.info {
+  position: absolute;
+  margin-left: 600px;
+  font-size: 15px;
+  margin-top: 220px;
+  font-weight: bold;
+}
+
+.stay {
+  position: absolute;
+  margin-left: 1190px;
+  font-size: 20px;
+  margin-top: 90px;
+  font-weight: bold;
+}
+.folio {
+  position: absolute;
+  margin-left: 1185px;
+  font-size: 20px;
+  margin-top: 120px;
+  font-weight: bold;
+}
+
+.icon {
+  position: absolute;
+  margin-left: 1150px;
+  font-size: 20px;
+  margin-top: 200px;
+}
+face,
+insta,
+naver,
+youtu,
+copy,
+cfont,
+copy_st {
+  position: relative;
+}
+.face {
+  position: absolute;
+  margin-left: -4px;
+}
+.insta {
+  position: absolute;
+  margin-left: 17px;
+}
+.naver {
+  position: absolute;
+  margin-left: 50px;
+}
+.youtu {
+  position: absolute;
+  margin-left: 80px;
+}
+.copy {
+  position: absolute;
+  margin-left: 0px;
+  font-size: 1px;
+  margin-top: 35px;
+}
+.cfont {
+  position: absolute;
+  margin-left: 45px;
+  font-size: 10px;
+  margin-top: 35px;
+}
+.copy_st {
+  position: absolute;
+  margin-left: 60px;
+  font-size: 1px;
+  margin-top: 35px;
+}
+bottom_line,
+bottom_line1,
+bottom_line2 {
+  position: relative;
+}
+.bottom_line {
+  position: absolute;
+  margin-top: 300px;
+  border-bottom: 1px solid #d0d0d0;
+  width: 1150px;
+  margin-left: 140px;
+}
+.bottom_line1 {
+  position: absolute;
+  margin-top: 320px;
+  font-size: 10px;
+  margin-left: 140px;
+}
+.bottom_line2 {
+  position: absolute;
+  margin-top: 340px;
+  font-size: 10px;
+  margin-left: 140px;
 }
