@@ -24,9 +24,14 @@ function Promotion({ promotionList }) {
       list = list.sort(function (a, b) {
         return new Date(a.pro_end) - new Date(b.pro_end);
       });
+    }
+    let idx = 0;
+    if (list) {
       for (let i = 0; i < list.length; i++) {
-        let temp = list.pop();
-        list.push(temp);
+        let temp = new Date(list[0].pro_end) - new Date();
+        if (temp < 0) {
+          list.push(list.shift());
+        }
       }
     }
   }
