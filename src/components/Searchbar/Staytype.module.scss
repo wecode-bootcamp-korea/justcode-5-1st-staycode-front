@@ -1,0 +1,63 @@
+.wrapper {
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  width: 200px;
+  padding: 20px;
+  position: absolute;
+  top: 60px;
+  left: 420px;
+  border-radius: 5px;
+  z-index: 4;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
+    background-color: transparent;
+  }
+}
+.body {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  label {
+    position: relative;
+    top: 20px;
+    left: 10px;
+  }
+  input {
+    position: relative;
+    right: 10px;
+  }
+}
+
+.applyButton {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 50px;
+}
+.dropdownStart {
+  animation-name: dropdown;
+  animation-duration: 0.3s;
+}
+
+@keyframes dropdown {
+  0% {
+    transform: translateY(-7%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

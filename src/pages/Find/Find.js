@@ -9,20 +9,25 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import Stay from '../../components/Stay/Stay';
 import Searchbar from '../../components/Searchbar/Searchbar';
 
-function Find({ locationModal, setLocationModal }) {
+function Find({ setLocationModal, setDateModal }) {
   const location = useLocation();
+  const [queries, setQueries] = useSearchParams();
+  const url = new URLSearchParams(queries);
   const [data, setData] = useState();
   const [page, setPage] = useState(0);
   const [city, setCity] = useState('국내전체');
-  const [queries, setQueries] = useSearchParams(location.search);
-  const url = new URLSearchParams(queries);
   const passedCity = queries.get('city');
   const passedCnt = queries.get('cnt');
   const passedMinP = queries.get('min_price');
   const passedMaxP = queries.get('max_price');
+  const passedType = queries.get('stay_type');
+  const passedTheme = queries.get('theme');
+  const passedCheckIn = queries.get('check_in');
+  const passedCheckOut = queries.get('check_out');
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
+
   function moveRight() {
     setPage(prev => {
       if (prev < maxPage) {
@@ -55,8 +60,8 @@ function Find({ locationModal, setLocationModal }) {
       setData(result.list);
     };
     fetchData();
-  }, [page, location.search]);
-  console.log('이거야', location.search);
+  }, [location.search]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [data]);
@@ -70,15 +75,23 @@ function Find({ locationModal, setLocationModal }) {
       <Searchbar
         city={city}
         url={url}
-        queries={queries}
+        setPage={setPage}
         setQueries={setQueries}
         passedCity={passedCity}
         passedCnt={passedCnt}
         passedMaxP={passedMaxP}
         passedMinP={passedMinP}
+        passedType={passedType}
+        passedTheme={passedTheme}
+        passedCheckIn={passedCheckIn}
+        passedCheckOut={passedCheckOut}
         onInputChange={onInputChange}
         setLocationModal={setLocationModal}
+        setDateModal={setDateModal}
       />
+      <div className={css.findSearchWrapper}>
+        <button>SEARCH &gt;</button>
+      </div>
       <div className={css.wrapper}>
         {data &&
           data

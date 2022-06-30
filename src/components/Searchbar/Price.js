@@ -1,15 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import css from './Price.module.scss';
-function Price({
-  showMenu,
-  setShowMenu,
-  setInputs,
-  url,
-  inputs,
-  queries,
-  setQueries,
-}) {
+function Price({ showMenu, setShowMenu, url, setQueries }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(100);
   const inputLeft = useRef(null);
@@ -69,7 +60,11 @@ function Price({
   }, [maxValue]);
 
   return (
-    <div className={css.wrapper}>
+    <div
+      className={
+        showMenu.show ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
+      }
+    >
       <div className={css.header}>
         <h1>{showMenu.menu.name}</h1>
         <button onClick={exit}>X</button>
@@ -105,36 +100,29 @@ function Price({
         <div className={css.pricesWrapper}>
           <div className={css.minPriceWrapper}>
             <span>최저요금</span>
-            <input type="text" value={minValue + '만원'} />
+            <input type="text" value={minValue * 10000} />
           </div>
           <strong>-</strong>
           <div className={css.maxPriceWrapper}>
             <span>최고요금</span>
-            <input type="text" value={maxValue + '만원'} />
+            <input type="text" value={maxValue * 10000} />
           </div>
         </div>
         <div className={css.linkWrapper}>
-          {/* <Link
-            to={`?price_min=${minValue}&price_max=${maxValue}`}
-            className={css.apply}
-            onClick={() => {
-              setShowMenu(prev => {
-                return { ...prev, menu: '', show: false };
-              });
-            }}
-          > */}
           <button
+            className={css.applyButton}
             onClick={() => {
-              // setQueries(
-              //   url.toString() + `&price_min=${minValue}&price_max=${maxValue}`
-              // );
-              inspect(`min_price`, `max_price`, minValue, maxValue);
+              inspect(
+                `min_price`,
+                `max_price`,
+                minValue * 10000,
+                maxValue * 10000
+              );
               toggleMenu();
             }}
           >
             적용하기
           </button>
-          {/* </Link> */}
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import css from './Staytype.module.scss';
-function Staytype({ showMenu, setShowMenu, url, setQueries }) {
-  const types = ['게스트하우스', '펜션', '한옥', '호텔', '독채', '리조트'];
+import css from './Theme.module.scss';
+
+function Theme({ showMenu, setShowMenu, url, setQueries }) {
+  const themes = ['도심속휴식', '사색', '정적인휴식', '한옥', '가족여행'];
   const [checked, setChecked] = useState([]);
   const onClick = e => {
     if (!checked.includes(e)) {
@@ -12,6 +13,7 @@ function Staytype({ showMenu, setShowMenu, url, setQueries }) {
       });
     }
   };
+
   const exit = () => {
     setShowMenu(prev => {
       return { ...prev, menu: '', show: false };
@@ -37,16 +39,16 @@ function Staytype({ showMenu, setShowMenu, url, setQueries }) {
         <button onClick={exit}>X</button>
       </div>
       <div className={css.body}>
-        {types.map(el => (
+        {themes.map(el => (
           <div key={el}>
             <label htmlFor={el}>{el}</label>
-            <input type="checkbox" id={el} onClick={() => onClick(el)} />
+            <input type="checkbox" onClick={() => onClick(el)} />
           </div>
         ))}
       </div>
       <button
         onClick={() => {
-          inspect('stay_type', checked.join());
+          inspect('theme', checked.join());
           exit();
         }}
         className={css.applyButton}
@@ -57,4 +59,4 @@ function Staytype({ showMenu, setShowMenu, url, setQueries }) {
   );
 }
 
-export default Staytype;
+export default Theme;
