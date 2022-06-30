@@ -55,7 +55,7 @@ function Login() {
             alert('login이 되었습니다.');
             navigate('/');
           } else if (res.statusCode !== 200) {
-            console.log('status error: ', res.status);
+            console.log('status error: ', res.statusCode);
             alert('로그인에 실패하였습니다.');
           }
           return res.json();
