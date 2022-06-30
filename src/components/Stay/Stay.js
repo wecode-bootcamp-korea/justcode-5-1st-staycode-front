@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import css from './Stay.module.scss';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -11,6 +12,7 @@ function Stay({ data }) {
   const target = useRef(null);
   const [page, setPage] = useState(0);
   const finalPage = data.images.length - 1;
+  const navigate = useNavigate();
 
   const moveRight = () => {
     setPage(prev => {
@@ -66,6 +68,9 @@ function Stay({ data }) {
           <div className={css.imageSwiper} ref={target}>
             {data.images.map(el => (
               <div
+                onClick={() => {
+                  navigate(`/findstay/${data.id}`);
+                }}
                 className={css.stayImage}
                 key={el}
                 style={{ backgroundImage: `url(${el})` }}
