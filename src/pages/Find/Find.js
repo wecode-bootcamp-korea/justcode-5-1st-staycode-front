@@ -54,7 +54,12 @@ function Find({ setLocationModal, setDateModal }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = null; // 이 부분이 에러가 있어서 실행이 안됨.
+      const result = await (
+        await fetch(`http://localhost:8000/findstay${location.search}`, {
+          method: 'GET', // for the test
+        })
+      ).json();
+
       setData(result.list);
     };
     fetchData();
