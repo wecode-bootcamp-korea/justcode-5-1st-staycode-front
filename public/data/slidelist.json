@@ -7,7 +7,8 @@
       "content": "동해 앞에서\r\n쉬어가는 유목민의 집",
       "title": "스테이유목",
       "price": 230000,
-      "location": "부산"
+      "location": "부산",
+      "accomodation_id": 10
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "content": "여느 날과 다른\r\n특별함으로",
       "title": "여느",
       "price": 250000,
-      "location": "인천"
+      "location": "인천",
+      "accomodation_id": 11
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "content": "골짜기 아래에서\r\n유럽의 빈티지를 그리다",
       "title": "탈하우스",
       "price": 380000,
-      "location": "서울"
+      "location": "서울",
+      "accomodation_id": 12
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "content": "나의 작은\r\n올리브 나무",
       "title": "토브카키",
       "price": 290000,
-      "location": "제주"
+      "location": "제주",
+      "accomodation_id": 13
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "content": "현재의\r\n소중한 순간을 담는 곳",
       "title": "Wabi Sabi House",
       "price": 320000,
-      "location": "대전"
+      "location": "대전",
+      "accomodation_id": 14
     }
   ]
 }

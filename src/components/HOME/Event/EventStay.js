@@ -50,9 +50,10 @@ function EventStay({ eventList }) {
               return (
                 <EventInfo
                   key={event.id}
-                  main_image_url={event.main_image_url}
+                  accomodation_id={event.accomodation_id}
+                  main_image_url={event.event_detail_image_url}
                   title={event.title}
-                  location={event.location}
+                  city={event.city}
                   content={event.content}
                   event_start={event.event_start}
                   event_end={event.event_end}

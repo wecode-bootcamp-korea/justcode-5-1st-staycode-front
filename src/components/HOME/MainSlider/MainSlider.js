@@ -60,6 +60,7 @@ function MainSlider({ mainImgList }) {
                   main_image_url={mainImg.main_image_url}
                   sub_image_url={mainImg.sub_image_url}
                   content={mainImg.content}
+                  accomodation_id={mainImg.accomodation_id}
                 />
               );
             })}

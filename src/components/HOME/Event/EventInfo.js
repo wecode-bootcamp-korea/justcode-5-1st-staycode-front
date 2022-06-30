@@ -5,8 +5,9 @@ import css from './EventInfo.module.scss';
 const EventInfo = ({
   main_image_url,
   title,
-  location,
+  city,
   content,
+  accomodation_id,
   event_start,
   event_end,
 }) => {
@@ -34,12 +35,12 @@ const EventInfo = ({
     }
   }
   return (
-    <Link to="/" className={css.link}>
+    <Link to={`/findstay/${accomodation_id}`} className={css.link}>
       <li className={css.eventstay_img}>
         <img className={css.main_img} src={main_image_url} alt="main" />
         <div className={css.sub_box}>
           <p className={css.title}>{title}</p>
-          <p className={css.location}>{location}</p>
+          <p className={css.location}>{city}</p>
           <p className={css.content}>{content}</p>
           <p className={css.read_more}>자세히 보기</p>
         </div>
