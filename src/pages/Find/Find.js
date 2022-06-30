@@ -16,7 +16,7 @@ function Find() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
-        await fetch('http://localhost:8000/findstay', { method: 'GET' })
+        await fetch('http://localhost:10010/findstay', { method: 'GET' })
       ).json();
       setData(result.list.slice(page * OFFSET, OFFSET + page * OFFSET));
     };

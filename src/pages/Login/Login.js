@@ -26,7 +26,6 @@ function Login() {
     if (!email.includes('@')) {
       return false;
     }
-
     if (password.length < 7) {
       return false;
     }
@@ -47,12 +46,27 @@ function Login() {
         }),
         headers: {
           'content-Type': 'application/json',
+          authentication: localStorage.getItem('token'),
         },
-      });
-      alert('login이 되었습니다.');
-      navigate('/');
-    } else {
-      alert('로그인에 실패하였습니다.');
+      })
+        .then(res => {
+          if (res.status === 200) {
+            console.log('status :', res.status);
+            alert('login이 되었습니다.');
+            navigate('/');
+          } else if (res.statusCode !== 200) {
+            console.log('status error: ', res.status);
+            alert('로그인에 실패하였습니다.');
+          }
+          return res.json();
+        })
+        .then(jsonData => {
+          localStorage.setItem('token', jsonData.token);
+          console.log('localStorage: ', localStorage);
+          localStorage.getItem('token');
+          console.log('getItem: ', localStorage);
+          //token 을 key 값으로 필요한 곳에서 가져감
+        });
     }
   };
   const val = validation(email, password);
