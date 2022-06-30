@@ -56,7 +56,7 @@ function Find({ setLocationModal, setDateModal }) {
     const fetchData = async () => {
       const result = await (
         await fetch(`http://localhost:8000/findstay${location.search}`, {
-          method: 'GET',
+          method: 'GET', // for the test
         })
       ).json();
       setData(result.list);
