@@ -49,9 +49,7 @@ function Find({ locationModal, setLocationModal }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await (
-
-      ).json();
+      const result = null; // 이 부분이 에러가 있어서 실행이 안됨.
       setData(result.list);
     };
     fetchData();
