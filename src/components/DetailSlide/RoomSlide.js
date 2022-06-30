@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function RoomSlide(props) {
   // const roomId=roomData.~  로 받아와서
-  const { img, name, accoData, search, seq } = props;
+  const { img, accoData, seq } = props;
   return (
     <div className={styles.imgWrapper}>
       {/* 요기 링크 룸데이터의 id 값 추출해서 대입하기 */}

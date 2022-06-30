@@ -37,6 +37,7 @@ function Detail() {
         images={accoData[0].images}
         name={accoData[0].name}
         totalSlides={4}
+        city={accoData[0].city}
       />
       <DetailSearchBar buttonOnOff={buttonOnOff} />
       {/* 룸 슬라이더로 roomdata 전달 */}

@@ -1,16 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Slider.module.scss';
-import img1 from './1.jpg';
-import img2 from './2.jpg';
-import img3 from './3.jpg';
 import Slide from './Slide';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-const totalSlides = 4;
-
 function Slider(props) {
-  const { sliderContents, images, name } = props;
+  const { sliderContents, images, name, totalSlides, city } = props;
   //데이터 셋 get
   const [slideList, setSlideList] = useState(images);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,8 +34,8 @@ function Slider(props) {
       <div className={styles.sliderContainer}>
         <div className={styles.slideBox} ref={slideRef}>
           {slideList.map((event, idx) => (
-            <div className={styles.slideWrapper}>
-              <Slide img={event.image_url} key={idx} />
+            <div className={styles.slideWrapper} key={idx}>
+              <Slide img={event.image_url} />
             </div>
           ))}
         </div>
@@ -59,6 +54,7 @@ function Slider(props) {
           </div>
           <div className={styles.nameInHeader}>
             <div>{name}</div>
+            <div>/{city}</div>
           </div>
         </div>
       )}

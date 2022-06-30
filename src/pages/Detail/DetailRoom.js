@@ -61,7 +61,7 @@ function DetailRoom() {
       </div>
       {/* <div className={styles.featuresBox}>특징</div>
       <div className={styles.amenities}>어매니티스</div> */}
-      <Link to={`/reservation${search}`}>
+      <Link to={`/reservation/${roomData[0].id}${search}`}>
         <button className={styles.payBtn}>결제하기</button>
       </Link>
       <DetailFqa roomData={[roomData[0]]} />
