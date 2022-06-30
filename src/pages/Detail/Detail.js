@@ -27,6 +27,7 @@ function Detail() {
         console.log('fetch_end');
       });
   }, [name]);
+  console.log(search);
   if (!accoData) {
     return <div>데이터 없음</div>;
   }

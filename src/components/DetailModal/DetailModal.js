@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './DetailModal.module.scss';
 import moment from 'moment';
 import Calendar from 'react-calendar';
@@ -11,11 +11,26 @@ function DetailModal(props) {
   const [date, setDate] = useState(new Date());
 
   //예약이 안되는 날짜 담은 state
-  const [noReservation, setNoReservation] = useState([
-    new Date(2022, 7, 9),
-    new Date(2022, 7, 6),
-  ]);
-  console.log(date);
+
+  const [disabledDates, setDisabledDates] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/reservation`, { method: 'GET' })
+      .then(res => res.json())
+      .then(res => {
+        console.log('datefetch');
+        setDisabledDates(
+          res.checkINData.map(data => new Date(data.reservation_start))
+        );
+        console.log('fetch_end');
+      });
+  }, []);
+  console.log(disabledDates);
+
+  if (!date) {
+    return <div>데이터 없음</div>;
+  }
+
   return (
     <div
       className={
@@ -32,15 +47,15 @@ function DetailModal(props) {
               maxDate={new Date(2022, 11, 30)}
               selectRange={true}
               defaultValue={date}
-              // tileDisabled={({ date, view }) =>
-              //   view === 'month' &&
-              //   noReservation.some(
-              //     noReservation =>
-              //       date.getFullYear() === noReservation.getFullYear() &&
-              //       date.getMonth() === noReservation.getMonth() &&
-              //       date.getDate() === noReservation.getDate()
-              //   )
-              // }
+              tileDisabled={({ date, view }) =>
+                view === 'month' && // Block day tiles only
+                disabledDates.some(
+                  disabledDate =>
+                    date.getFullYear() === disabledDate.getFullYear() &&
+                    date.getMonth() === disabledDate.getMonth() &&
+                    date.getDate() === disabledDate.getDate()
+                )
+              }
               formatDay={(locale, date) => moment(date).format('DD')}
             />
           </div>

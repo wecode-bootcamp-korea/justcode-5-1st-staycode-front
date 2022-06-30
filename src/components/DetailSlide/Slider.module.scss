@@ -5,6 +5,11 @@
   margin: 0 auto;
   height: 650px;
   overflow: hidden;
+  button {
+    border: none;
+    cursor: pointer;
+    width: 100vh;
+  }
 
   .slideBox {
     width: 100vh;
