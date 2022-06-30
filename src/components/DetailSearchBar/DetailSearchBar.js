@@ -22,7 +22,7 @@ function DetailSearchBar(props) {
         날짜를 선택해주세요.
         <FontAwesomeIcon icon={faTableList} />
       </button>
-      <DetailModal open={modalOpen} close={closeModal} />
+      <DetailModal open={modalOpen} close={closeModal} roomData={roomData} />
       {buttonOnOff === true && (
         <Link to={`/reservation/${roomData}`}>
           <button className={styles.payBtn}>결제하기</button>

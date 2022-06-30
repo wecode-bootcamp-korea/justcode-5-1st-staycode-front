@@ -5,7 +5,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 function DetailModal(props) {
-  const { open, close } = props;
+  const { open, close, roomData } = props;
 
   //어떤 날짜를 선택했는지 담은 state date[0]는 체크인 , data[1]은 체크아웃
   const [date, setDate] = useState(new Date());
@@ -15,7 +15,7 @@ function DetailModal(props) {
   const [disabledDates, setDisabledDates] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:8000/reservation`, { method: 'GET' })
+    fetch(`http://localhost:8000/reservation/${roomData}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
         console.log('datefetch');
@@ -27,7 +27,7 @@ function DetailModal(props) {
   }, []);
   console.log(disabledDates);
 
-  if (!date) {
+  if (!disabledDates) {
     return <div>데이터 없음</div>;
   }
 
@@ -49,6 +49,7 @@ function DetailModal(props) {
               defaultValue={date}
               tileDisabled={({ date, view }) =>
                 view === 'month' && // Block day tiles only
+                disabledDates &&
                 disabledDates.some(
                   disabledDate =>
                     date.getFullYear() === disabledDate.getFullYear() &&
