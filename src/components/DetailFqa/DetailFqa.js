@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './DetailFqa.module.scss';
 
-function DetailFqa({ roomData }) {
+function DetailFqa({ roomData, onOff }) {
+  //전달받은 roomData로 Fqa 표데이터에 뿌려주기
+
   return (
     <div className={styles.fqa}>
       <div className={styles.fqaName}>
@@ -19,17 +21,18 @@ function DetailFqa({ roomData }) {
                 <td>기준인원</td>
                 <td>최대인원</td>
               </tr>
-              {/* 맵돌리기 */}
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>{roomData[0].name}</td>
+                <td>{roomData[0].max_guest}</td>
+                <td>{roomData[0].max_guest + 1}</td>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
+              {onOff && (
+                <tr>
+                  <td>{roomData[1].name}</td>
+                  <td>{roomData[1].max_guest}</td>
+                  <td>{roomData[1].max_guest + 1}</td>
+                </tr>
+              )}
             </tbody>
           </table>
 
@@ -42,15 +45,17 @@ function DetailFqa({ roomData }) {
               </tr>
               {/* 맵돌리기 */}
               <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>{roomData[0].name}</td>
+                <td>{roomData[0].price}</td>
+                <td>{roomData[0].price + 50000}</td>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-              </tr>
+              {onOff && (
+                <tr>
+                  <td>{roomData[1].name}</td>
+                  <td>{roomData[1].price}</td>
+                  <td>{roomData[1].price + 50000}</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

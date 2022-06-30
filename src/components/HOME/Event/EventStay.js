@@ -22,11 +22,15 @@ function EventStay({ eventList }) {
   function sortListWithEnd(list) {
     if (list) {
       list = list.sort(function (a, b) {
-        return new Date(a.pro_end) - new Date(b.pro_end);
+        return new Date(a.event_end) - new Date(b.event_end);
       });
+    }
+    if (list) {
       for (let i = 0; i < list.length; i++) {
-        let temp = list.pop();
-        list.push(temp);
+        let temp = new Date(list[0].event_end) - new Date();
+        if (temp < 0) {
+          list.push(list.shift());
+        }
       }
     }
   }
@@ -46,9 +50,10 @@ function EventStay({ eventList }) {
               return (
                 <EventInfo
                   key={event.id}
-                  main_image_url={event.main_image_url}
+                  accomodation_id={event.accomodation_id}
+                  main_image_url={event.event_detail_image_url}
                   title={event.title}
-                  location={event.location}
+                  city={event.city}
                   content={event.content}
                   event_start={event.event_start}
                   event_end={event.event_end}

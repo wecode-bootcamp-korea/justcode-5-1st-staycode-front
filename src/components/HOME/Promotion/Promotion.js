@@ -5,7 +5,6 @@ import SlideButton from '../MainSlider/SliderButton';
 
 function Promotion({ promotionList }) {
   const [curIdx, setCurIdx] = useState(0);
-
   function handleMainSlider(curIdx) {
     if (curIdx === promotionList.length) {
       curIdx = 0;
@@ -24,9 +23,13 @@ function Promotion({ promotionList }) {
       list = list.sort(function (a, b) {
         return new Date(a.pro_end) - new Date(b.pro_end);
       });
+    }
+    if (list) {
       for (let i = 0; i < list.length; i++) {
-        let temp = list.pop();
-        list.push(temp);
+        let temp = new Date(list[0].pro_end) - new Date();
+        if (temp < 0) {
+          list.push(list.shift());
+        }
       }
     }
   }
@@ -46,14 +49,17 @@ function Promotion({ promotionList }) {
                 return (
                   <PromotionInfo
                     key={pro.id}
-                    main_image_url={pro.main_image_url}
                     accomodation_id={pro.accomodation_id}
+                    main_image_url={pro.pro_detail_image_url}
+                    name={pro.name}
                     title={pro.title}
                     content={pro.content}
-                    location={pro.location}
+                    city={pro.city}
                     stay_type={pro.stay_type}
-                    max_guest={pro.max_guest}
-                    price={pro.price}
+                    guests={pro.guests}
+                    prices={pro.prices}
+                    //max_guest={pro.max_guest}
+                    //price={pro.price}
                     pro_start={pro.pro_start}
                     pro_end={pro.pro_end}
                   />

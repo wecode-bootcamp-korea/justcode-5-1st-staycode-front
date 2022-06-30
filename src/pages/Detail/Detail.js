@@ -4,52 +4,55 @@ import DetailSearchBar from '../../components/DetailSearchBar/DetailSearchBar';
 import DetailFqa from '../../components/DetailFqa/DetailFqa';
 import Slider from '../../components/DetailSlide/Slider';
 import RoomSlider from '../../components/DetailSlide/RoomSlider';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Map from '../../components/Map/Map';
 
 function Detail() {
   const buttonOnOff = false;
-
   const params = useParams();
   const { name } = params;
+  const location = useLocation();
+  const { search } = location;
 
-  //데이터
-  const [accoData, setAccoData] = useState([]);
-  const [roomData, setRoomData] = useState([]);
+  //데이터 get
+  const [accoData, setAccoData] = useState();
 
+  //숙소 데이터 패치
   useEffect(() => {
-    fetch('', {
-      method: 'GET',
-    })
+    fetch(`http://localhost:8000/accomodation/${name}`, { method: 'GET' })
       .then(res => res.json())
-      .then(data => {
-        setAccoData(data);
+      .then(res => {
+        console.log('fetch');
+        setAccoData(res.data);
+        console.log('fetch_end');
       });
-  }, []);
-
-  useEffect(() => {
-    fetch('', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setRoomData(data);
-      });
-  }, []);
-
+  }, [name]);
+  if (!accoData) {
+    return <div>데이터 없음</div>;
+  }
   return (
     <div className={styles.container}>
-      <Slider sliderContents={true} />
+      <Slider
+        sliderContents={true}
+        images={accoData[0].images}
+        name={accoData[0].name}
+        totalSlides={4}
+        city={accoData[0].city}
+      />
       <DetailSearchBar buttonOnOff={buttonOnOff} />
-      <RoomSlider name={name} roomData={roomData} />
-      <div className={styles.accoName}>숙소이름</div>
+      {/* 룸 슬라이더로 roomdata 전달 */}
+      <RoomSlider name={name} accoData={accoData} search={search} />
+      <div className={styles.accoName}>{accoData[0].name}</div>
       <div className={styles.centerLine} />
-      <div className={styles.content}>내용</div>
-      <div className={styles.address}>주소</div>
+      <div className={styles.content}>{accoData[0].content}</div>
+      <div className={styles.address}>{accoData[0].location}</div>
       <div className={styles.map}>
         <Map accoData={accoData} />
       </div>
-      <DetailFqa roomData={roomData} />
+      <DetailFqa
+        roomData={[accoData[0].rooms[0], accoData[0].rooms[1]]}
+        onOff={true}
+      />
     </div>
   );
 }

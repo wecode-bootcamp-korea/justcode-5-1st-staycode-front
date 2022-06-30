@@ -1,18 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Slider.module.scss';
-import img1 from './1.jpg';
-import img2 from './2.jpg';
-import img3 from './3.jpg';
 import Slide from './Slide';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-const totalSlides = 2;
-
 function Slider(props) {
-  const { sliderContents } = props;
+  const { sliderContents, images, name, totalSlides, city } = props;
   //데이터 셋 get
-  const [slideList, setSlideList] = useState([img1, img2, img3]);
+  const [slideList, setSlideList] = useState(images);
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
   const nextSlide = () => {
@@ -31,7 +26,7 @@ function Slider(props) {
   };
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    slideRef.current.style.transform = `translateX(-${currentSlide}00vw)`;
   }, [currentSlide]);
 
   return (
@@ -39,7 +34,9 @@ function Slider(props) {
       <div className={styles.sliderContainer}>
         <div className={styles.slideBox} ref={slideRef}>
           {slideList.map((event, idx) => (
-            <Slide img={event} key={idx} />
+            <div className={styles.slideWrapper} key={idx}>
+              <Slide img={event.image_url} />
+            </div>
           ))}
         </div>
       </div>
@@ -56,7 +53,8 @@ function Slider(props) {
             <span>PROMOTION</span>
           </div>
           <div className={styles.nameInHeader}>
-            <div>숙소이름</div>
+            <div>{name}</div>
+            <div>/{city}</div>
           </div>
         </div>
       )}

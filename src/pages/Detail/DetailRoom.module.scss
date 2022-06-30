@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 
   .imgContainer {
     margin-top: 30px;
@@ -12,6 +13,7 @@
     .contents {
       width: 25%;
       padding-left: 40px;
+      padding-right: 30px;
       .roomName {
         margin-top: 40px;
         font-size: 40px;
@@ -22,4 +24,13 @@
       }
     }
   }
+}
+.payBtn {
+  margin-top: 40px;
+  background-color: black;
+  color: white;
+  width: 300px;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

@@ -3,6 +3,7 @@ import styles from './DetailSearchBar.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableList } from '@fortawesome/free-solid-svg-icons';
 import DetailModal from '../DetailModal/DetailModal';
+import { Link } from 'react-router-dom';
 
 function DetailSearchBar(props) {
   const { buttonOnOff } = props;
@@ -23,7 +24,9 @@ function DetailSearchBar(props) {
       </button>
       <DetailModal open={modalOpen} close={closeModal} />
       {buttonOnOff === true && (
-        <button className={styles.payBtn}>결제하기</button>
+        <Link to="/reservation">
+          <button className={styles.payBtn}>결제하기</button>
+        </Link>
       )}
     </div>
   );

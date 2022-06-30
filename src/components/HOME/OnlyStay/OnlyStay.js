@@ -35,6 +35,7 @@ function OnlyStay({ mainImgList }) {
                   title={mainImg.title}
                   location={mainImg.location}
                   price={mainImg.price}
+                  accomodation_id={mainImg.accomodation_id}
                 />
               );
             })}

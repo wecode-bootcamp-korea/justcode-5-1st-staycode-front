@@ -59,6 +59,7 @@ function Find({ setLocationModal, setDateModal }) {
           method: 'GET', // for the test
         })
       ).json();
+
       setData(result.list);
     };
     fetchData();
