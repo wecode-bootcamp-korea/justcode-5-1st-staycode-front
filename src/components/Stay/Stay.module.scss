@@ -18,12 +18,17 @@
   flex-direction: column;
   padding-top: 100px;
   a {
-    margin-top: 70px;
+    margin-top: 60px;
     color: black;
     font-weight: 700;
     padding-bottom: 5px;
     text-decoration: none;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
+    width: 60px;
+  }
+  .prices {
+    margin-top: 20px;
+    font-size: 12px;
   }
 }
 .stayImageWrapper {

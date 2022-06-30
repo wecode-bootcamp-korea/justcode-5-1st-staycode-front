@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import css from './Datemodal.module.scss';
+import css from './DateModalForMain.module.scss';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 
-function Datemodal({ setDateModal, location, url, setQueries }) {
+function DateModalForMain({ setDateModalForMain, url, setQueries }) {
   const [date, setDate] = useState(new Date());
 
   function hideDateModal() {
-    setDateModal(false);
+    setDateModalForMain(false);
   }
 
   function inspect(target1, target2, value1, value2) {
@@ -59,7 +58,7 @@ function Datemodal({ setDateModal, location, url, setQueries }) {
           />
         </div>
         <div className={css.modalSubmit}>
-          <Link
+          <button
             onClick={() => {
               hideDateModal();
               inspect(
@@ -69,16 +68,13 @@ function Datemodal({ setDateModal, location, url, setQueries }) {
                 dateParser(date[1])
               );
             }}
-            to={`/findstay?check_in=${dateParser(
-              date[0]
-            )}&check_out=${dateParser(date[1])}`}
           >
             SEARCH
-          </Link>
+          </button>
         </div>
       </div>
     </>
   );
 }
 
-export default Datemodal;
+export default DateModalForMain;

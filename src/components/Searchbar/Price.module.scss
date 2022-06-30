@@ -24,16 +24,14 @@
 .body {
   margin-top: 40px;
 }
-.apply {
+.applyButton {
   display: block;
   margin: 0 auto;
   margin-top: 30px;
-  button {
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    padding: 10px 30px;
-  }
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 50px;
 }
 .linkWrapper {
   display: flex;
@@ -124,5 +122,21 @@ input[type='range']::-webkit-slider-thumb {
   strong {
     position: relative;
     top: 12px;
+  }
+}
+.dropdownStart {
+  animation-name: dropdown;
+  animation-duration: 0.3s;
+}
+
+@keyframes dropdown {
+  0% {
+    transform: translateY(-7%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

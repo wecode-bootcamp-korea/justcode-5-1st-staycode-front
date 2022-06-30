@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import css from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import {
+  useNavigate,
+  Link,
+  useLocation,
+  useSearchParams,
+} from 'react-router-dom';
 import Datemodal from '../Modal/Datemodal';
 import Locationmodal from '../Modal/Locationmodal';
 
@@ -17,7 +22,11 @@ function Header({ dateModal, setDateModal, locationModal, setLocationModal }) {
   //   check_out: '',
   // });
   const navigate = useNavigate();
+
   const location = useLocation();
+  const [queries, setQueries] = useSearchParams();
+  const url = new URLSearchParams(queries);
+
   function showDateModal() {
     setDateModal(true);
   }
@@ -69,7 +78,12 @@ function Header({ dateModal, setDateModal, locationModal, setLocationModal }) {
         </div>
       </header>
       {dateModal ? (
-        <Datemodal setDateModal={setDateModal} />
+        <Datemodal
+          location={location}
+          url={url}
+          setDateModal={setDateModal}
+          setQueries={setQueries}
+        />
       ) : locationModal ? (
         <Locationmodal setLocationModal={setLocationModal} />
       ) : null}

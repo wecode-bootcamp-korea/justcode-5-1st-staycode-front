@@ -9,6 +9,27 @@
   border-bottom: 1px solid #e8e8e8;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  .reset {
+    color: black;
+    padding: 13px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+    background-color: white;
+  }
+  .checkInOut {
+    position: relative;
+    right: 220px;
+    display: flex;
+    align-items: center;
+    input {
+      width: 200px;
+      text-align: center;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
 .searchLoc {
   width: 200px;
@@ -81,6 +102,7 @@
   padding: 10px 8px;
   border-radius: 5px;
   margin-right: 10px;
+  font-size: 15px;
   &:hover {
     cursor: pointer;
   }

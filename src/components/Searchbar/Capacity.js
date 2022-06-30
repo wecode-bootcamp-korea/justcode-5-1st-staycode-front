@@ -1,4 +1,4 @@
-import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import css from './Capacity.module.scss';
 
 function Capacity({
@@ -7,11 +7,8 @@ function Capacity({
   setInputs,
   inputs,
   url,
-  queries,
   setQueries,
 }) {
-  const location = useLocation();
-
   const increase = () => {
     setInputs(prev => {
       const newCnt = prev[0].value.cnt + 1;
@@ -45,7 +42,11 @@ function Capacity({
     }
   }
   return (
-    <div className={css.wrapper}>
+    <div
+      className={
+        showMenu.show ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
+      }
+    >
       <div className={css.header}>
         <h1>{showMenu.menu.name}</h1>
         <button onClick={exit}>X</button>
@@ -56,18 +57,16 @@ function Capacity({
           <span>{inputs[0].value.cnt}명</span>
           <button onClick={increase}>+</button>
         </div>
-
-        <button
-          onClick={() => {
-            inspect('cnt', inputs[0].value.cnt);
-            // setQueries(url.toString() + `&cnt=${inputs[0].value.cnt}`);
-            exit();
-          }}
-        >
-          적용하기
-        </button>
-        {/* </Link> */}
       </div>
+      <button
+        className={css.applyButton}
+        onClick={() => {
+          inspect('cnt', inputs[0].value.cnt);
+          exit();
+        }}
+      >
+        적용하기
+      </button>
     </div>
   );
 }

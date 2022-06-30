@@ -44,6 +44,9 @@ function Stay({ data }) {
       <div className={css.infoWrapper}>
         <div className={css.stayInfo}>
           <span>{data.city}</span>
+          <span
+            className={css.prices}
+          >{`₩${data.prices[0]} ~ ₩${data.prices[1]}`}</span>
           <Link to={`/findstay/${data.name}`}>예약하기</Link>
         </div>
         <div className={css.stayImageWrapper}>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
@@ -35,8 +34,8 @@ function Router() {
           path="/findstay"
           element={
             <Find
-              locationModal={locationModal}
               setLocationModal={setLocationModal}
+              setDateModal={setDateModal}
             />
           }
         />
