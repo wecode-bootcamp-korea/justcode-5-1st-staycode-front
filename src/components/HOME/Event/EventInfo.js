@@ -15,10 +15,7 @@ const EventInfo = ({
     const today = new Date();
     const temp = event_end_date - today;
     const due_date = new Date(temp).getDate();
-    console.log(event_end); //2012
-    console.log(event_end_date); //sat
-    console.log(today); //sat
-    console.log(temp); //3123124
+
     if (temp >= 0) {
       if (due_date >= 2) {
         const left = 'DAYS\r\nLEFT!';
