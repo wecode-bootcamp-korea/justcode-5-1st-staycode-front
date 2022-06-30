@@ -29,6 +29,17 @@ function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login/joinMember" element={<JoinMember />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/findstay/:name" element={<Detail />} />
+        <Route path="/findstay/room/:roomid" element={<DetailRoom />} />
+        <Route
+          path="/findstay"
+          element={
+            <Find
+              locationModal={locationModal}
+              setLocationModal={setLocationModal}
+            />
+          }
+        />
         <Route path="/reservation" element={<Reservation />} />
       </Routes>
       <Footer />
