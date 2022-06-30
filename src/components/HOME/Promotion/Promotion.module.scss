@@ -1,0 +1,41 @@
+.promotion_container {
+  background-color: rgb(245, 245, 245);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .slider {
+    position: relative;
+    width: 1290px;
+    height: 540px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-top: 120px;
+    margin-bottom: 120px;
+
+    .slider_list {
+      position: relative;
+
+      .slider_content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        overflow-x: visible;
+        transform: translateX(0);
+        transition-duration: 0ms;
+      }
+    }
+
+    .page_num {
+      position: absolute;
+      left: 10px;
+      bottom: 15px;
+    }
+
+    .slider_btn {
+      position: absolute;
+      left: 75px;
+      bottom: 10px;
+    }
+  }
+}

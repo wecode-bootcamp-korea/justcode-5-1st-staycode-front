@@ -1,0 +1,47 @@
+.wrapper {
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  width: 200px;
+  padding: 20px;
+  position: absolute;
+  top: 60px;
+  border-radius: 5px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
+    background-color: transparent;
+  }
+}
+.body {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div {
+    display: flex;
+  }
+  span {
+    border: 1px solid #e8e8e8;
+    padding: 10px 15px;
+  }
+  button {
+    padding: 10px 15px;
+  }
+}
+.apply {
+  margin-top: 20px;
+  button {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 30px;
+  }
+}
