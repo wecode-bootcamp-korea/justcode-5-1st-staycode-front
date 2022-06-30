@@ -1,7 +1,109 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Reservation.scss';
+import { useParams, useLocation, Link } from 'react-router-dom';
+import DatemodalInReservation from '../../components/Modal/DatemodalInReservation';
 
 function Reservation() {
+  const params = useParams();
+  const { roomid } = params;
+
+  const location = useLocation();
+  const { search } = location;
+
+  const token = localStorage.getItem('token');
+  // const user_id = localStorage.getItem('user_id');
+  console.log('token', token);
+  // console.log('user_id', user_id);
+
+  //데이터
+  const [dateModal, setDateModal] = useState(false);
+  const [roomData, setRoomData] = useState();
+  const [accomData, setAccomData] = useState();
+
+  const [inputs, setInputs] = useState({
+    user_id: '',
+    reservation_start: '',
+    reservation_end: '',
+    price: '',
+    room_id: roomid,
+    guest: '',
+    special_requests: '',
+    booker: '',
+    phone: '',
+    email: '',
+  });
+
+  const {
+    room_id,
+    user_id,
+    reservation_start,
+    reservation_end,
+    price,
+    guest,
+    special_requests,
+    booker,
+    phone,
+    email,
+  } = inputs; // 비구조화 할당을 통해 값 추출
+
+  function showDateModal() {
+    setDateModal(true);
+  }
+
+  useEffect(() => {
+    console.log('roomid', roomid);
+    fetch(`http://localhost:8000/room/${roomid}`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(res => {
+        setRoomData(res.data[0]);
+        console.log(res.data[0]);
+        fetch(
+          `http://localhost:8000/accomodation/${res.data[0]?.accomodation_id}`,
+          {
+            method: 'GET',
+          }
+        )
+          .then(res => res.json())
+          .then(res => {
+            setAccomData(res.data[0]);
+            console.log(res.data[0]);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      })
+
+      .catch(err => {
+        console.error(err);
+      });
+  }, [roomid]);
+
+  const onChange = e => {
+    const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+    setInputs({
+      ...inputs, // 기존의 input 객체를 복사한 뒤
+      [name]: value, // name 키를 가진 값을 value 로 설정
+    });
+    console.log(inputs);
+  };
+
+  function submitReservation() {
+    // const reservationAPI = 'http://localhost:8000/signup';
+    //   fetch(reservationAPI, {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       email,
+    //       name,
+    //       password,
+    //       phone,
+    //     }),
+    //     headers: {
+    //       'content-Type': 'application/json',
+    //     },
+  }
+
   return (
     <div className="wrap">
       <div>
@@ -9,11 +111,13 @@ function Reservation() {
       </div>
       <div className="head-wrap">
         <div className="head-left">
-          <h1>스테이보름</h1>
+          <h1>{accomData?.name}</h1>
         </div>
-        <div className="head-center">날짜를 선택해주세요.</div>
+        <div className="head-center" onClick={showDateModal}>
+          날짜를 선택해주세요.
+        </div>
         <div className="head-right">
-          <h1>₩460,000</h1>
+          <h1>₩{roomData?.price}</h1>
         </div>
       </div>
       <div className="input-wrap">
@@ -26,7 +130,7 @@ function Reservation() {
             <p>예약 스테이</p>
           </div>
           <div className="input-component-right">
-            <p>스테이 보름 / 기본형</p>
+            <p>{roomData?.name} / 기본형</p>
           </div>
         </div>
         {/* input-comp */}
@@ -35,7 +139,7 @@ function Reservation() {
             <p>예약일</p>
           </div>
           <div className="input-component-right">
-            <p>2022-07-25 ~ 2022-07-261 1박</p>
+            <p>2022-07-25 ~ 2022-07-26 1박</p>
           </div>
         </div>
         {/* input-comp */}
@@ -45,7 +149,7 @@ function Reservation() {
             <p>이름</p>
           </div>
           <div className="input-component-right">
-            <input />
+            <input name="booker" onChange={onChange} value={booker} />
           </div>
         </div>
         {/* input-comp */}
@@ -55,7 +159,7 @@ function Reservation() {
             <p>휴대전화</p>
           </div>
           <div className="input-component-right">
-            <input />
+            <input name="phone" onChange={onChange} value={phone} />
           </div>
         </div>
         {/* input-comp */}
@@ -65,20 +169,23 @@ function Reservation() {
             <p>이메일</p>
           </div>
           <div className="input-component-right">
-            <input />
+            <input name="email" onChange={onChange} value={email} />
           </div>
         </div>
         {/* input-comp */}
         {/* input-comp */}
         <div className="input-component">
           <div className="input-component-left">
-            <p>인원 (최대 3명)</p>
+            <p>인원 (최대 {roomData?.max_guest}명)</p>
           </div>
           <div className="input-component-right">
-            <select>
-              <option value="1명">1명</option>
-              <option value="2명">2명</option>
-              <option value="3명">3명</option>
+            <select name="guest" onChange={onChange} value={guest}>
+              {roomData &&
+                [...Array(roomData?.max_guest)].map((n, index) => {
+                  return (
+                    <option value={String(index + 1)}>{index + 1}명</option>
+                  );
+                })}
             </select>
           </div>
         </div>
@@ -142,7 +249,12 @@ function Reservation() {
             <p>요청사항</p>
           </div>
           <div className="input-component-right">
-            <textarea textarea id="ask" name="ask" rows="5" />
+            <textarea
+              name="special_requests"
+              onChange={onChange}
+              value={special_requests}
+              rows="5"
+            />
           </div>
         </div>
         {/* input-comp */}
@@ -156,7 +268,7 @@ function Reservation() {
               <span className="fontgray">객실 요금</span>
               <span style={{ marginLeft: '10px' }}>
                 {' '}
-                스테이 보름 / 기본형 ₩460000 * 1 박
+                {roomData?.name} / 기본형 ₩{roomData?.price} * 1 박
               </span>
               <span style={{ marginLeft: 'auto' }} className="fontgray">
                 ₩460,000
@@ -169,11 +281,14 @@ function Reservation() {
         </div>
         {/* input-comp */}
         <div className="button-wrap">
-          <div className="button">
+          <div className="button" onClick={submitReservation}>
             <p>결제하기</p>
           </div>
         </div>
       </div>
+      {dateModal ? (
+        <DatemodalInReservation setDateModal={setDateModal} />
+      ) : null}
     </div>
   );
 }

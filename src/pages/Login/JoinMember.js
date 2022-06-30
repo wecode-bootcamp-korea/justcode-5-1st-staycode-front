@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 import css from './JoinMember.module.scss';
-import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+// import { Button } from 'react-bootstrap';
+// import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
 import Dacument from './Dacument';
 import { AiOutlineDown } from 'react-icons/ai';
 
@@ -56,7 +56,7 @@ function JoinMember() {
   };
   const buttonOnClick = () => {
     if (validation(email, password, name, pass, phone)) {
-      const signURL = 'http://localhost:10010/signup';
+      const signURL = 'http://localhost:8000/signup';
       fetch(signURL, {
         method: 'POST',
         body: JSON.stringify({

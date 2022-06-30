@@ -7,6 +7,7 @@ import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import Basket from './Basket/Basket';
 import Detail from './Detail/Detail';
+import DetailRoom from './Detail/DetailRoom';
 import Find from './Find/Find';
 import Reservation from './Reservation/Reservation';
 import JoinMember from './Login/JoinMember';
@@ -40,6 +41,7 @@ function Router() {
           }
         />
         <Route path="/reservation" element={<Reservation />} />
+        <Route path="/reservation/:roomid" element={<Reservation />} />
       </Routes>
       <Footer />
     </BrowserRouter>
