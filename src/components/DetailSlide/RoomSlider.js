@@ -1,8 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './RoomSlider.module.scss';
-import img1 from './1.jpg';
-import img2 from './2.jpg';
-import img3 from './3.jpg';
 import RoomSlide from './RoomSlide';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
