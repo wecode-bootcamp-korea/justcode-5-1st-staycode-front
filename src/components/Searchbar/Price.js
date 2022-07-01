@@ -66,8 +66,8 @@ function Price({ showMenu, setShowMenu, url, setQueries }) {
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu.name}</h1>
-        <button onClick={exit}>X</button>
+        <h1>{showMenu.menu}</h1>
+        <span onClick={exit}>X</span>
       </div>
       <div className={css.body}>
         <form className={css.box}>
