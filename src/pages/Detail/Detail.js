@@ -27,6 +27,7 @@ function Detail() {
         console.log('fetch_end');
       });
   }, [name]);
+  console.log(search);
   if (!accoData) {
     return <div>데이터 없음</div>;
   }
@@ -39,7 +40,10 @@ function Detail() {
         totalSlides={4}
         city={accoData[0].city}
       />
-      <DetailSearchBar buttonOnOff={buttonOnOff} />
+      <DetailSearchBar
+        buttonOnOff={buttonOnOff}
+        roomData={accoData[0].rooms[0].id}
+      />
       {/* 룸 슬라이더로 roomdata 전달 */}
       <RoomSlider name={name} accoData={accoData} search={search} />
       <div className={styles.accoName}>{accoData[0].name}</div>

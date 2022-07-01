@@ -35,7 +35,7 @@ function DetailRoom() {
       <div>
         <h2>B O O K I N G</h2>
       </div>
-      <DetailSearchBar buttonOnOff={buttonOnOff} />
+      <DetailSearchBar buttonOnOff={buttonOnOff} roomData={roomData[0].id} />
       <div className={styles.imgContainer}>
         <div className={styles.contents}>
           <div>
