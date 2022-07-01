@@ -16,14 +16,6 @@ function Find({ setLocationModal, setDateModal }) {
   const [data, setData] = useState();
   const [page, setPage] = useState(0);
   const [city, setCity] = useState('국내전체');
-  const passedCity = queries.get('city');
-  const passedCnt = queries.get('cnt');
-  const passedMinP = queries.get('min_price');
-  const passedMaxP = queries.get('max_price');
-  const passedType = queries.get('stay_type');
-  const passedTheme = queries.get('theme');
-  const passedCheckIn = queries.get('check_in');
-  const passedCheckOut = queries.get('check_out');
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
@@ -59,7 +51,6 @@ function Find({ setLocationModal, setDateModal }) {
           method: 'GET', // for the test
         })
       ).json();
-
       setData(result.list);
     };
     fetchData();
@@ -79,21 +70,14 @@ function Find({ setLocationModal, setDateModal }) {
         city={city}
         url={url}
         setPage={setPage}
+        queries={queries}
         setQueries={setQueries}
-        passedCity={passedCity}
-        passedCnt={passedCnt}
-        passedMaxP={passedMaxP}
-        passedMinP={passedMinP}
-        passedType={passedType}
-        passedTheme={passedTheme}
-        passedCheckIn={passedCheckIn}
-        passedCheckOut={passedCheckOut}
         onInputChange={onInputChange}
         setLocationModal={setLocationModal}
         setDateModal={setDateModal}
       />
       <div className={css.findSearchWrapper}>
-        <button>SEARCH &gt;</button>
+        <button>SEARCH</button>
       </div>
       <div className={css.wrapper}>
         {data &&

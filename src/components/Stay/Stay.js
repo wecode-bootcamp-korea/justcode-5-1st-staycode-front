@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import css from './Stay.module.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -44,9 +44,9 @@ function Stay({ data }) {
       <div className={css.infoWrapper}>
         <div className={css.stayInfo}>
           <span>{data.city}</span>
-          <span
-            className={css.prices}
-          >{`₩${data.prices[0]} ~ ₩${data.prices[1]}`}</span>
+          <span className={css.prices}>{`₩${Math.min(
+            ...data.prices
+          )} ~ ₩${Math.max(...data.prices)}`}</span>
           <Link to={`/findstay/${data.name}`}>예약하기</Link>
         </div>
         <div className={css.stayImageWrapper}>

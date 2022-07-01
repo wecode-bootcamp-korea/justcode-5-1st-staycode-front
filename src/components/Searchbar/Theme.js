@@ -35,7 +35,7 @@ function Theme({ showMenu, setShowMenu, url, setQueries }) {
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu.name}</h1>
+        <h1>{showMenu.menu}</h1>
         <button onClick={exit}>X</button>
       </div>
       <div className={css.body}>

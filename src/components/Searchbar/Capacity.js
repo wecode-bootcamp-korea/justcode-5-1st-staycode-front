@@ -1,30 +1,20 @@
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import css from './Capacity.module.scss';
 
-function Capacity({
-  showMenu,
-  setShowMenu,
-  setInputs,
-  inputs,
-  url,
-  setQueries,
-}) {
+function Capacity({ showMenu, setShowMenu, url, setQueries }) {
+  const [count, setCount] = useState(0);
+
   const increase = () => {
-    setInputs(prev => {
-      const newCnt = prev[0].value.cnt + 1;
-      const newCapacity = { name: '인원', value: { cnt: newCnt } };
-      const [a, ...etcArr] = prev;
-      return [newCapacity, ...etcArr];
-    });
+    setCount(prev => prev + 1);
   };
 
   const decrease = () => {
-    setInputs(prev => {
-      const newCnt =
-        prev[0].value.cnt > 0 ? prev[0].value.cnt - 1 : prev[0].value.cnt;
-      const newCapacity = { name: '인원', value: { cnt: newCnt } };
-      const [a, ...etcArr] = prev;
-      return [newCapacity, ...etcArr];
+    setCount(prev => {
+      if (0 < prev) {
+        return prev - 1;
+      } else {
+        return prev;
+      }
     });
   };
 
@@ -48,20 +38,20 @@ function Capacity({
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu.name}</h1>
+        <h1>{showMenu.menu}</h1>
         <button onClick={exit}>X</button>
       </div>
       <div className={css.body}>
         <div>
           <button onClick={decrease}>-</button>
-          <span>{inputs[0].value.cnt}명</span>
+          <span>{count}명</span>
           <button onClick={increase}>+</button>
         </div>
       </div>
       <button
         className={css.applyButton}
         onClick={() => {
-          inspect('cnt', inputs[0].value.cnt);
+          inspect('cnt', count);
           exit();
         }}
       >
