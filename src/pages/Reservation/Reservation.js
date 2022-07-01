@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Reservation.scss';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import DatemodalInReservation from '../../components/Modal/DatemodalInReservation';
+import { useNavigate } from 'react-router-dom';
 
 function Reservation() {
+  const navigate = useNavigate();
   const params = useParams();
   const { roomid } = params;
 
@@ -20,22 +22,28 @@ function Reservation() {
   const [roomData, setRoomData] = useState();
   const [accomData, setAccomData] = useState();
 
+  const [startData, setStartData] = useState();
+  const [endData, setEndData] = useState();
+  const [stayDays, setStayDays] = useState(0);
+  const [startDataTime, setStartDataTime] = useState();
+  const [endDataTime, setEndDataTime] = useState();
+
   const [inputs, setInputs] = useState({
-    user_id: '',
+    // user_id: '',
     reservation_start: '',
     reservation_end: '',
     price: '',
     room_id: roomid,
-    guest: '',
+    guest: 1,
     special_requests: '',
     booker: '',
     phone: '',
-    email: '',
+    email: 'app01@naver.com',
   });
 
   const {
     room_id,
-    user_id,
+    // user_id,
     reservation_start,
     reservation_end,
     price,
@@ -80,6 +88,32 @@ function Reservation() {
       });
   }, [roomid]);
 
+  useEffect(() => {
+    console.log('startData', startData);
+    console.log(`startData ${typeof startData}`);
+    console.log('endData', endData);
+    console.log(`endData ${typeof endData}`);
+
+    console.log('startDataTime', startDataTime);
+    console.log(`startDataTime ${typeof startDataTime}`);
+    console.log('endDataTime', endDataTime);
+    console.log(`endDataTime ${typeof endDataTime}`);
+
+    const millesec = Date.parse(endDataTime) - Date.parse(startDataTime);
+    const days = Math.round(millesec / (1000 * 60 * 60 * 24)) - 1;
+    console.log('days', days);
+    setStayDays(days);
+
+    if (roomData?.price && days) {
+      setInputs({
+        ...inputs, // 기존의 input 객체를 복사한 뒤
+        price: days * roomData?.price, // name 키를 가진 값을 value 로 설정
+        reservation_end: endData,
+        reservation_start: startData,
+      });
+    }
+  }, [startData, endData, startDataTime, endDataTime]);
+
   const onChange = e => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     setInputs({
@@ -90,18 +124,34 @@ function Reservation() {
   };
 
   function submitReservation() {
-    // const reservationAPI = 'http://localhost:8000/signup';
-    //   fetch(reservationAPI, {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       email,
-    //       name,
-    //       password,
-    //       phone,
-    //     }),
-    //     headers: {
-    //       'content-Type': 'application/json',
-    //     },
+    const reservationAPI = `http://localhost:8000/reservation`;
+    console.log(inputs);
+    fetch(reservationAPI, {
+      method: 'POST',
+      body: JSON.stringify({
+        room_id,
+        reservation_start,
+        reservation_end,
+        price,
+        guest,
+        special_requests,
+        booker,
+        phone,
+        email,
+      }),
+      headers: {
+        'content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        console.error(res);
+        alert(`예약 완료 ${JSON.stringify(res)}`);
+        navigate(`/`);
+      })
+      .catch(err => {
+        console.error(err);
+        alert(err);
+      });
   }
 
   return (
@@ -114,7 +164,9 @@ function Reservation() {
           <h1>{accomData?.name}</h1>
         </div>
         <div className="head-center" onClick={showDateModal}>
-          날짜를 선택해주세요.
+          {startData
+            ? `${startData} ~ ${endData} ${stayDays}박`
+            : `날짜를 선택해주세요.`}
         </div>
         <div className="head-right">
           <h1>₩{roomData?.price}</h1>
@@ -139,7 +191,9 @@ function Reservation() {
             <p>예약일</p>
           </div>
           <div className="input-component-right">
-            <p>2022-07-25 ~ 2022-07-26 1박</p>
+            <p>
+              {startData} ~ {endData} {stayDays}박
+            </p>
           </div>
         </div>
         {/* input-comp */}
@@ -156,7 +210,7 @@ function Reservation() {
         {/* input-comp */}
         <div className="input-component">
           <div className="input-component-left">
-            <p>휴대전화</p>
+            <p>휴대전화(숫자만)</p>
           </div>
           <div className="input-component-right">
             <input name="phone" onChange={onChange} value={phone} />
@@ -169,7 +223,12 @@ function Reservation() {
             <p>이메일</p>
           </div>
           <div className="input-component-right">
-            <input name="email" onChange={onChange} value={email} />
+            <input
+              placeholder="app01@naver.com"
+              name="email"
+              onChange={onChange}
+              value={email}
+            />
           </div>
         </div>
         {/* input-comp */}
@@ -268,26 +327,36 @@ function Reservation() {
               <span className="fontgray">객실 요금</span>
               <span style={{ marginLeft: '10px' }}>
                 {' '}
-                {roomData?.name} / 기본형 ₩{roomData?.price} * 1 박
+                {roomData?.name} / 기본형 ₩{roomData?.price} * {stayDays} 박
               </span>
               <span style={{ marginLeft: 'auto' }} className="fontgray">
-                ₩460,000
+                ₩{price}
               </span>
             </p>
             <div className="input-component-price">
-              <h1>₩460,000</h1>
+              <h1>₩{price}</h1>
             </div>
           </div>
         </div>
         {/* input-comp */}
         <div className="button-wrap">
-          <div className="button" onClick={submitReservation}>
+          <div
+            className="button"
+            onClick={submitReservation}
+            style={{ cursor: 'pointer' }}
+          >
             <p>결제하기</p>
           </div>
         </div>
       </div>
       {dateModal ? (
-        <DatemodalInReservation setDateModal={setDateModal} />
+        <DatemodalInReservation
+          setDateModal={setDateModal}
+          setStartData={setStartData}
+          setEndData={setEndData}
+          setStartDataTime={setStartDataTime}
+          setEndDataTime={setEndDataTime}
+        />
       ) : null}
     </div>
   );
