@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import css from './Staytype.module.scss';
-function Staytype({ showMenu, setShowMenu, url, setQueries }) {
+function Staytype({ selected, exit, urlChange }) {
   const types = ['게스트하우스', '펜션', '한옥', '호텔', '독채', '리조트'];
   const [checked, setChecked] = useState([]);
+
   const onClick = e => {
     if (!checked.includes(e)) {
       setChecked(prev => prev.concat(e));
@@ -12,28 +13,15 @@ function Staytype({ showMenu, setShowMenu, url, setQueries }) {
       });
     }
   };
-  const exit = () => {
-    setShowMenu(prev => {
-      return { ...prev, menu: '', show: false };
-    });
-  };
 
-  function inspect(target, value) {
-    if (url.has(target)) {
-      url.set(target, value);
-      setQueries(url.toString());
-    } else {
-      setQueries(url.toString() + `&${target}=${value}`);
-    }
-  }
   return (
     <div
       className={
-        showMenu.show ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
+        selected ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu}</h1>
+        <h1>{selected}</h1>
         <button onClick={exit}>X</button>
       </div>
       <div className={css.body}>
@@ -46,7 +34,7 @@ function Staytype({ showMenu, setShowMenu, url, setQueries }) {
       </div>
       <button
         onClick={() => {
-          inspect('stay_type', checked.join());
+          urlChange('stay_type', checked.join());
           exit();
         }}
         className={css.applyButton}

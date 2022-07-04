@@ -33,8 +33,8 @@ function Stay({ data }) {
   const dotsArray = Array.from({ length: finalPage + 1 }, (_, i) => i);
 
   useEffect(() => {
-    target.current.style.transition = 'all 0.2s ease-in-out';
-    target.current.style.transform = `translateX(-${page * 400}px)`;
+    target.current.style.transition = 'all 0.3s ease-in-out';
+    target.current.style.transform = `translateX(-${page * 380}px)`;
   }, [page]);
 
   return (
@@ -46,7 +46,9 @@ function Stay({ data }) {
           <span>{data.city}</span>
           <span className={css.prices}>{`₩${Math.min(
             ...data.prices
-          )} ~ ₩${Math.max(...data.prices)}`}</span>
+          ).toLocaleString('en')} ~ ₩${Math.max(...data.prices).toLocaleString(
+            'en'
+          )}`}</span>
           <Link to={`/findstay/${data.name}`}>예약하기</Link>
         </div>
         <div className={css.stayImageWrapper}>
@@ -80,7 +82,7 @@ function Stay({ data }) {
               />
             ))}
           </div>
-          <div className={css.whatever}>
+          <div className={css.dotsWrapper}>
             {dotsArray.map(el => (
               <span
                 className={css.swiperPagination}

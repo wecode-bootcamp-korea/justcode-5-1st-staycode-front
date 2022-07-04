@@ -73,11 +73,11 @@ function JoinMember() {
     } else {
       console.log('string: ', string);
       alert(`${string} 가입에 실패하였습니다.`);
-      setEmail('');
-      setPassword('');
-      setName('');
-      setPass('');
-      setPhone('');
+      // setEmail('');
+      // setPassword('');
+      // setName('');
+      // setPass('');
+      // setPhone('');
     }
   };
 

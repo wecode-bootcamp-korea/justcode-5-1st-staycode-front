@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import css from './Capacity.module.scss';
 
-function Capacity({ showMenu, setShowMenu, url, setQueries }) {
+function Capacity({ selected, urlChange, exit }) {
   const [count, setCount] = useState(0);
 
   const increase = () => {
@@ -18,27 +18,14 @@ function Capacity({ showMenu, setShowMenu, url, setQueries }) {
     });
   };
 
-  const exit = () => {
-    setShowMenu(prev => {
-      return { ...prev, menu: '', show: false };
-    });
-  };
-  function inspect(target, value) {
-    if (url.has(target)) {
-      url.set(target, value);
-      setQueries(url.toString());
-    } else {
-      setQueries(url.toString() + `&${target}=${value}`);
-    }
-  }
   return (
     <div
       className={
-        showMenu.show ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
+        selected ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu}</h1>
+        <h1>{selected}</h1>
         <button onClick={exit}>X</button>
       </div>
       <div className={css.body}>
@@ -51,7 +38,7 @@ function Capacity({ showMenu, setShowMenu, url, setQueries }) {
       <button
         className={css.applyButton}
         onClick={() => {
-          inspect('cnt', count);
+          urlChange('cnt', count);
           exit();
         }}
       >
