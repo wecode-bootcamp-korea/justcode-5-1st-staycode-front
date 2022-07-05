@@ -36,6 +36,11 @@ function Datemodal({ setDateModal, location, url, setQueries }) {
     }
   }
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'auto');
+  }, []);
+
   return (
     <>
       <div className={css.overlay} onClick={hideDateModal} />

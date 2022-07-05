@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import css from './Price.module.scss';
-function Price({ showMenu, setShowMenu, url, setQueries }) {
+function Price({ selected, exit, urlChange }) {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(100);
   const inputLeft = useRef(null);
@@ -16,28 +16,6 @@ function Price({ showMenu, setShowMenu, url, setQueries }) {
   const onMaxInput = e => {
     setMaxValue(e.target.value);
   };
-
-  const exit = () => {
-    setShowMenu(prev => {
-      return { ...prev, menu: '', show: false };
-    });
-  };
-
-  const toggleMenu = () => {
-    setShowMenu(prev => {
-      return { ...prev, menu: '', show: false };
-    });
-  };
-
-  function inspect(target1, target2, value1, value2) {
-    if (url.has(target1)) {
-      url.set(target1, value1);
-      url.set(target2, value2);
-      setQueries(url.toString());
-    } else {
-      setQueries(url.toString() + `&${target1}=${value1}&${target2}=${value2}`);
-    }
-  }
 
   useEffect(() => {
     const _this = inputLeft.current;
@@ -62,11 +40,11 @@ function Price({ showMenu, setShowMenu, url, setQueries }) {
   return (
     <div
       className={
-        showMenu.show ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
+        selected ? `${css.wrapper} ${css.dropdownStart}` : `${css.wrapper}`
       }
     >
       <div className={css.header}>
-        <h1>{showMenu.menu}</h1>
+        <h1>{selected}</h1>
         <span onClick={exit}>X</span>
       </div>
       <div className={css.body}>
@@ -100,25 +78,25 @@ function Price({ showMenu, setShowMenu, url, setQueries }) {
         <div className={css.pricesWrapper}>
           <div className={css.minPriceWrapper}>
             <span>최저요금</span>
-            <input type="text" value={minValue * 10000} />
+            <input type="text" value={minValue + '만원'} />
           </div>
           <strong>-</strong>
           <div className={css.maxPriceWrapper}>
             <span>최고요금</span>
-            <input type="text" value={maxValue * 10000} />
+            <input type="text" value={maxValue + '만원'} />
           </div>
         </div>
         <div className={css.linkWrapper}>
           <button
             className={css.applyButton}
             onClick={() => {
-              inspect(
+              urlChange(
                 `min_price`,
-                `max_price`,
                 minValue * 10000,
+                `max_price`,
                 maxValue * 10000
               );
-              toggleMenu();
+              exit();
             }}
           >
             적용하기

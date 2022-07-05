@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from './Datemodal.module.scss';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
@@ -19,16 +18,6 @@ function DatemodalInReservation({
     setDateModal(false);
   }
 
-  // function inspect(target1, target2, value1, value2) {
-  //   if (url.has(target1)) {
-  //     url.set(target1, value1);
-  //     url.set(target2, value2);
-  //     setQueries(url.toString());
-  //   } else {
-  //     setQueries(url.toString() + `&${target1}=${value1}&${target2}=${value2}`);
-  //   }
-  // }
-
   function dateParser(target) {
     if (target !== undefined) {
       const parsedYear = target.getFullYear();
@@ -41,6 +30,10 @@ function DatemodalInReservation({
       return `${parsedYear}-${parsedMonth}-${parsedDate}`;
     }
   }
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'auto');
+  }, []);
 
   return (
     <>

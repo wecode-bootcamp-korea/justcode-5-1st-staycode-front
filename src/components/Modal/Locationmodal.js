@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import css from './Locationmodal.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function Locationmodal({ setLocationModal }) {
   const [city, setCity] = useState('');
   const regions = ['국내전체', '서울', '인천', '부산', '대전', '제주'];
@@ -25,7 +25,10 @@ function Locationmodal({ setLocationModal }) {
     navigate(`/findStay?city=${city}`);
     setLocationModal(false);
   }
-
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'auto');
+  }, []);
   return (
     <>
       <div className={css.overlay} onClick={hideLocationModal} />

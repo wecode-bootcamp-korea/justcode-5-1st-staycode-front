@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import css from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faCalendar } from '@fortawesome/free-solid-svg-icons';
@@ -17,12 +16,7 @@ const categories = [
 ];
 
 function Header({ dateModal, setDateModal, locationModal, setLocationModal }) {
-  // const [date, setDate] = useState({
-  //   check_in: '',
-  //   check_out: '',
-  // });
   const navigate = useNavigate();
-
   const location = useLocation();
   const [queries, setQueries] = useSearchParams();
   const url = new URLSearchParams(queries);

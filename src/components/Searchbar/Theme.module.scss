@@ -17,6 +17,7 @@
     font-size: 20px;
   }
   button {
+    border: none;
     font-size: 20px;
     background-color: transparent;
   }
@@ -29,10 +30,13 @@
     position: relative;
     top: 20px;
     left: 10px;
+    cursor: pointer;
   }
   input {
     position: relative;
     right: 10px;
+    accent-color: black;
+    cursor: pointer;
   }
 }
 .applyButton {

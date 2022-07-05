@@ -3,6 +3,12 @@
 * {
   box-sizing: border-box;
 }
+button {
+  &:hover {
+    cursor: pointer;
+  }
+  border: none;
+}
 .theme {
   font-family: 'Gowun Dodum', sans-serif;
 }

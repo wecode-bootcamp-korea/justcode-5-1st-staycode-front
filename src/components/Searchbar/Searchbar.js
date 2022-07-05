@@ -13,15 +13,9 @@ import { Link } from 'react-router-dom';
 import LocModalforMain from '../Modal/LocModalForMain';
 import DateModalForMain from '../Modal/DateModalForMain';
 
-function Searchbar({ setPage, city, url, queries, setQueries, onInputChange }) {
-  const [inputs, setInputs] = useState([
-    '인원',
-    '가격 범위',
-    '스테이 유형',
-    '테마',
-  ]);
-  const [showMenu, setShowMenu] = useState({ menu: '', show: false });
-  const { menu, show } = showMenu;
+function Searchbar({ setPage, city, url, queries, setQueries }) {
+  const options = ['인원', '가격 범위', '스테이 유형', '테마'];
+  const [selected, setSelected] = useState();
   const [locModal, setLocModal] = useState(false);
   const [dateModalForMain, setDateModalForMain] = useState(false);
   const passedCity = queries.get('city');
@@ -35,32 +29,55 @@ function Searchbar({ setPage, city, url, queries, setQueries, onInputChange }) {
   const passedTypes = passedType && passedType.split(',');
   const passedThemes = passedTheme && passedTheme.split(',');
 
-  const onClick = el => {
-    setShowMenu(prev => {
-      if (prev.menu !== el) {
-        return { ...prev, menu: el, show: true };
-      } else return { ...prev, menu: el, show: !prev.show };
+  const changeOption = el => {
+    setSelected(prev => {
+      if (prev !== el) {
+        return el;
+      } else if (prev === el) {
+        return '';
+      }
     });
   };
 
+  const exit = () => {
+    setSelected('');
+  };
+
+  const locModalOn = () => {
+    setLocModal(true);
+  };
+
+  const resetPage = () => {
+    setPage(0);
+  };
+  const urlChange = (target1, value1, target2, value2) => {
+    if (!target2) {
+      if (url.has(target1)) {
+        url.set(target1, value1);
+        setQueries(url.toString());
+      } else {
+        setQueries(url.toString() + `&${target1}=${value1}`);
+      }
+    } else {
+      if (url.has(target1)) {
+        url.set(target1, value1);
+        url.set(target2, value2);
+        setQueries(url.toString());
+      } else {
+        setQueries(
+          url.toString() + `&${target1}=${value1}&${target2}=${value2}`
+        );
+      }
+    }
+  };
   return (
     <>
       <div className={css.searchWrapper}>
         <div className={css.searchFirstRow}>
           <div>
             <label htmlFor="searchLocation">여행지/숙소</label>
-            <input
-              onChange={onInputChange}
-              type="text"
-              id="searchLocation"
-              className={css.searchLoc}
-            />
-            <button
-              onClick={() => {
-                setLocModal(true);
-              }}
-              className={css.toggleModal}
-            >
+            <input type="text" id="searchLocation" className={css.searchLoc} />
+            <button onClick={locModalOn} className={css.toggleModal}>
               {passedCity || city}
             </button>
           </div>
@@ -80,23 +97,17 @@ function Searchbar({ setPage, city, url, queries, setQueries, onInputChange }) {
             />
           </div>
           <div>
-            <Link
-              to="/findstay"
-              onClick={() => {
-                setPage(0);
-              }}
-              className={css.reset}
-            >
+            <Link to="/findstay" onClick={resetPage} className={css.reset}>
               <FontAwesomeIcon icon={faArrowRotateLeft} />
             </Link>
           </div>
         </div>
 
         <div className={css.searchSecondRow}>
-          {inputs.map(el => (
+          {options.map(el => (
             <div
               onClick={() => {
-                onClick(el);
+                changeOption(el);
               }}
               className={css.inputs}
               key={el.name}
@@ -104,7 +115,9 @@ function Searchbar({ setPage, city, url, queries, setQueries, onInputChange }) {
               {el === '인원' && passedCnt
                 ? `인원 : ${passedCnt}명`
                 : el === '가격 범위' && passedMinP
-                ? `가격 : ${passedMinP} ~ ${passedMaxP}`
+                ? `가격 : ${(passedMinP * 1).toLocaleString('en')} ~ ${(
+                    passedMaxP * 1
+                  ).toLocaleString('en')}`
                 : el === '스테이 유형' && passedType
                 ? `${passedTypes[0]} 외 ${passedTypes.length - 1}건`
                 : el === '테마' && passedTheme
@@ -116,39 +129,17 @@ function Searchbar({ setPage, city, url, queries, setQueries, onInputChange }) {
               />
             </div>
           ))}
-          {menu === inputs[0] && show && (
-            <Capacity
-              url={url}
-              setQueries={setQueries}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              setInputs={setInputs}
-              inputs={inputs}
-            />
+          {selected === '인원' && (
+            <Capacity urlChange={urlChange} selected={selected} exit={exit} />
           )}
-          {menu === inputs[1] && show && (
-            <Price
-              url={url}
-              setQueries={setQueries}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-            />
+          {selected === '가격 범위' && (
+            <Price urlChange={urlChange} selected={selected} exit={exit} />
           )}
-          {menu === inputs[2] && show && (
-            <Staytype
-              url={url}
-              setQueries={setQueries}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-            />
+          {selected === '스테이 유형' && (
+            <Staytype urlChange={urlChange} selected={selected} exit={exit} />
           )}
-          {menu === inputs[3] && show && (
-            <Theme
-              url={url}
-              setQueries={setQueries}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-            />
+          {selected === '테마' && (
+            <Theme urlChange={urlChange} selected={selected} exit={exit} />
           )}
         </div>
       </div>
