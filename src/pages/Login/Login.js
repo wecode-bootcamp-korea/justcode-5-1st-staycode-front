@@ -37,7 +37,7 @@ function Login() {
     console.log('pw: ', password);
     if (validation(email, password)) {
       console.log('val: ', validation);
-      const loginURL = 'http://localhost:8000/login';
+      const loginURL = 'http://localhost:10010/login';
       fetch(loginURL, {
         method: 'POST',
         body: JSON.stringify({
