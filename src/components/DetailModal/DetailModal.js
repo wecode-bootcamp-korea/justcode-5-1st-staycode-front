@@ -18,14 +18,11 @@ function DetailModal(props) {
     fetch(`http://localhost:8000/reservation/${roomData}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        console.log('datefetch');
         setDisabledDates(
           res.checkINData.map(data => new Date(data.reservation_start))
         );
-        console.log('fetch_end');
       });
   }, []);
-  console.log(disabledDates);
 
   if (!disabledDates) {
     return <div>데이터 없음</div>;

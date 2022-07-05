@@ -8,7 +8,8 @@ import { TbCopyright } from 'react-icons/tb';
 function Footer() {
   return (
     // <div className={css.container}>footer</div>;
-    <div>
+
+    <div className={css.wrapper}>
       <div className={css.wrapup}>
         <div>
           <div>

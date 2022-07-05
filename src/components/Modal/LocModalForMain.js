@@ -2,7 +2,7 @@ import css from './LocModalForMain.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function LocModalforMain({ setLocModal, url, setQueries }) {
   const [city, setCity] = useState('');
   const regions = ['국내전체', '서울', '인천', '부산', '대전', '제주'];
@@ -34,6 +34,12 @@ function LocModalforMain({ setLocModal, url, setQueries }) {
       setQueries(url.toString() + `&${target}=${value}`);
     }
   }
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'auto');
+  }, []);
+
   return (
     <>
       <div className={css.overlay} onClick={hideLocationModal} />

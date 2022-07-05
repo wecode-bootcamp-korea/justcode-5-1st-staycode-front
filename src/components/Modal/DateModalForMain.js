@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from './DateModalForMain.module.scss';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 
@@ -34,7 +34,10 @@ function DateModalForMain({ setDateModalForMain, url, setQueries }) {
       return `${parsedYear}-${parsedMonth}-${parsedDate}`;
     }
   }
-
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => (document.body.style.overflow = 'auto');
+  }, []);
   return (
     <>
       <div className={css.overlay} onClick={hideDateModal} />

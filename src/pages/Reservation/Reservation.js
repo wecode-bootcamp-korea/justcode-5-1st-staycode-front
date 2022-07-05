@@ -13,9 +13,8 @@ function Reservation() {
   const { search } = location;
 
   const token = localStorage.getItem('token');
-  // const user_id = localStorage.getItem('user_id');
+
   console.log('token', token);
-  // console.log('user_id', user_id);
 
   //데이터
   const [dateModal, setDateModal] = useState(false);

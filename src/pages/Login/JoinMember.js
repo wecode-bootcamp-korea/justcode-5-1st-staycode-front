@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 import css from './JoinMember.module.scss';
-// import { Button } from 'react-bootstrap';
-// import { useNavigate } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import Dacument from './Dacument';
 import { AiOutlineDown } from 'react-icons/ai';
 
@@ -56,7 +56,7 @@ function JoinMember() {
   };
   const buttonOnClick = () => {
     if (validation(email, password, name, pass, phone)) {
-      const signURL = 'http://localhost:8000/signup';
+      const signURL = 'http://localhost:10010/signup';
       fetch(signURL, {
         method: 'POST',
         body: JSON.stringify({
@@ -73,11 +73,11 @@ function JoinMember() {
     } else {
       console.log('string: ', string);
       alert(`${string} 가입에 실패하였습니다.`);
-      setEmail('');
-      setPassword('');
-      setName('');
-      setPass('');
-      setPhone('');
+      // setEmail('');
+      // setPassword('');
+      // setName('');
+      // setPass('');
+      // setPhone('');
     }
   };
 
@@ -177,16 +177,16 @@ function JoinMember() {
           />
         </div>
         <div className={css.find_password}>
-          <button className={css.sent}>인증번호 발송</button>
+          {/* <button className={css.sent}>인증번호 발송</button> */}
         </div>
-        <div className={css.find_password}>
+        {/* <div className={css.find_password}>
           <button className={css.find_num}>인증번호 확인</button>
           <button className={css.agree_num}>인증번호 재발송</button>
-        </div>
+        </div> */}
 
         <div className={css.find_password1}>
           <input type="checkbox" value="agree" className={css.gap} />
-          <span class={css.font}>사용자 약관에 전체 동의</span>
+          <span class={css.scale}>사용자 약관에 전체 동의</span>
         </div>
         <div className={css.find_password}>
           <input

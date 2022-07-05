@@ -40,10 +40,6 @@ function Find({ setLocationModal, setDateModal }) {
     setPage(target);
   }
 
-  function onInputChange(e) {
-    setCity(e.target.value);
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
@@ -72,7 +68,6 @@ function Find({ setLocationModal, setDateModal }) {
         setPage={setPage}
         queries={queries}
         setQueries={setQueries}
-        onInputChange={onInputChange}
         setLocationModal={setLocationModal}
         setDateModal={setDateModal}
       />
