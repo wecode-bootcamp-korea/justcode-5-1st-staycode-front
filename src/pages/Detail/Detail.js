@@ -20,7 +20,7 @@ function Detail() {
 
   //숙소 데이터 패치
   useEffect(() => {
-    fetch(`http://${BASE_URL}/accomodation/${name}`, { method: 'GET' })
+    fetch(`http://${BASE_URL}:8000/accomodation/${name}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
         console.log('fetch');

@@ -11,13 +11,13 @@ function Home() {
   const [proEventList, setProEventList] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/slidelist.json')
+    fetch(`http://${BASE_URL}:3000/data/slidelist.json`)
       .then(res => res.json())
       .then(data => setImgList(data));
   }, [setImgList]);
 
   useEffect(() => {
-    fetch(`http://${BASE_URL}/`)
+    fetch(`http://${BASE_URL}:8000/home`)
       .then(res => res.json())
       .then(data => setProEventList(data));
   }, [setProEventList]);

@@ -60,7 +60,7 @@ function Reservation() {
 
   useEffect(() => {
     console.log('roomid', roomid);
-    fetch(`http://${BASE_URL}/room/${roomid}`, {
+    fetch(`http://${BASE_URL}:8000/room/${roomid}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -68,7 +68,7 @@ function Reservation() {
         setRoomData(res.data[0]);
         console.log(res.data[0]);
         fetch(
-          `http://${BASE_URL}/accomodation/${res.data[0]?.accomodation_id}`,
+          `http://${BASE_URL}:8000/accomodation/${res.data[0]?.accomodation_id}`,
           {
             method: 'GET',
           }
@@ -124,7 +124,7 @@ function Reservation() {
   };
 
   function submitReservation() {
-    const reservationAPI = `http://${BASE_URL}/reservation`;
+    const reservationAPI = `http://${BASE_URL}:8000/reservation`;
     console.log(inputs);
     fetch(reservationAPI, {
       method: 'POST',

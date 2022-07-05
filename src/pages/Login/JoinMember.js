@@ -54,7 +54,7 @@ function JoinMember() {
   };
   const buttonOnClick = () => {
     if (validation(email, password, name, pass, phone)) {
-      const signURL = `http://${BASE_URL}/signup`;
+      const signURL = `http://${BASE_URL}:8000/signup`;
       fetch(signURL, {
         method: 'POST',
         body: JSON.stringify({

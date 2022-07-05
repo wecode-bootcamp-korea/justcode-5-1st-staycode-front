@@ -18,7 +18,7 @@ function DetailRoom() {
   //데이터
   const [roomData, setRoomData] = useState();
   useEffect(() => {
-    fetch(`http://${BASE_URL}/room/${roomid}`, {
+    fetch(`http://${BASE_URL}:8000/room/${roomid}`, {
       method: 'GET',
     })
       .then(res => res.json())

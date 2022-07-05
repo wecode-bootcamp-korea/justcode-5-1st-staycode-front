@@ -47,7 +47,7 @@ function Find({ setLocationModal, setDateModal }) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
-        await fetch(`http://${BASE_URL}/findstay${location.search}`, {
+        await fetch(`http://${BASE_URL}:8000/findstay${location.search}`, {
           method: 'GET',
         })
       ).json();
