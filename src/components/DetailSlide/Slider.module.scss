@@ -62,6 +62,7 @@
     }
     .nameInHeader {
       display: flex;
+      flex-direction: column;
       height: 100%;
       border-left: 1px solid white;
       width: 15%;
@@ -69,6 +70,11 @@
       align-items: center;
       font-size: 20px;
       font-weight: 700;
+
+      .cityName {
+        margin-top: 8px;
+        font-size: 15px;
+      }
     }
   }
 }

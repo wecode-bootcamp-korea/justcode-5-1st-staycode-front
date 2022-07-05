@@ -54,7 +54,7 @@ function Slider(props) {
           </div>
           <div className={styles.nameInHeader}>
             <div>{name}</div>
-            <div>/{city}</div>
+            <div className={styles.cityName}>{city}</div>
           </div>
         </div>
       )}

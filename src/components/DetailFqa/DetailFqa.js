@@ -46,14 +46,14 @@ function DetailFqa({ roomData, onOff }) {
               {/* 맵돌리기 */}
               <tr>
                 <td>{roomData[0].name}</td>
-                <td>{roomData[0].price}</td>
-                <td>{roomData[0].price + 50000}</td>
+                <td>{roomData[0].price.toLocaleString('en')}</td>
+                <td>{(roomData[0].price + 50000).toLocaleString('en')}</td>
               </tr>
               {onOff && (
                 <tr>
                   <td>{roomData[1].name}</td>
-                  <td>{roomData[1].price}</td>
-                  <td>{roomData[1].price + 50000}</td>
+                  <td>{roomData[1].price.toLocaleString('en')}</td>
+                  <td>{(roomData[1].price + 50000).toLocaleString('en')}</td>
                 </tr>
               )}
             </tbody>
