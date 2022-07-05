@@ -8,7 +8,7 @@ import {
 import { useLocation, useSearchParams } from 'react-router-dom';
 import Stay from '../../components/Stay/Stay';
 import Searchbar from '../../components/Searchbar/Searchbar';
-
+import { BASE_URL } from '../../config';
 function Find({ setLocationModal, setDateModal }) {
   const location = useLocation();
   const [queries, setQueries] = useSearchParams();
@@ -47,8 +47,8 @@ function Find({ setLocationModal, setDateModal }) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
-        await fetch(`http://localhost:8000/findstay${location.search}`, {
-          method: 'GET', // for the test
+        await fetch(`http://${BASE_URL}/findstay${location.search}`, {
+          method: 'GET',
         })
       ).json();
       setData(result.list);
