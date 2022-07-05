@@ -6,6 +6,7 @@ import Slider from '../../components/DetailSlide/Slider';
 import RoomSlider from '../../components/DetailSlide/RoomSlider';
 import { useLocation, useParams } from 'react-router-dom';
 import Map from '../../components/Map/Map';
+import { BASE_URL } from '../../config';
 
 function Detail() {
   const buttonOnOff = false;
@@ -19,7 +20,7 @@ function Detail() {
 
   //숙소 데이터 패치
   useEffect(() => {
-    fetch(`http://localhost:8000/accomodation/${name}`, { method: 'GET' })
+    fetch(`http://${BASE_URL}/accomodation/${name}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
         console.log('fetch');

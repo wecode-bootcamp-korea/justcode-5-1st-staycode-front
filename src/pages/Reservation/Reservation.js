@@ -3,6 +3,7 @@ import './Reservation.scss';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import DatemodalInReservation from '../../components/Modal/DatemodalInReservation';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../config';
 
 function Reservation() {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ function Reservation() {
 
   useEffect(() => {
     console.log('roomid', roomid);
-    fetch(`http://localhost:8000/room/${roomid}`, {
+    fetch(`http://${BASE_URL}/room/${roomid}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -67,7 +68,7 @@ function Reservation() {
         setRoomData(res.data[0]);
         console.log(res.data[0]);
         fetch(
-          `http://localhost:8000/accomodation/${res.data[0]?.accomodation_id}`,
+          `http://${BASE_URL}/accomodation/${res.data[0]?.accomodation_id}`,
           {
             method: 'GET',
           }
@@ -123,7 +124,7 @@ function Reservation() {
   };
 
   function submitReservation() {
-    const reservationAPI = `http://localhost:8000/reservation`;
+    const reservationAPI = `http://${BASE_URL}/reservation`;
     console.log(inputs);
     fetch(reservationAPI, {
       method: 'POST',

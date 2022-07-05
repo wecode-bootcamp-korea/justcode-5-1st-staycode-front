@@ -8,14 +8,14 @@ import {
 import { useLocation, useSearchParams } from 'react-router-dom';
 import Stay from '../../components/Stay/Stay';
 import Searchbar from '../../components/Searchbar/Searchbar';
-
+import { BASE_URL } from '../../config';
 function Find({ setLocationModal, setDateModal }) {
   const location = useLocation();
   const [queries, setQueries] = useSearchParams();
   const url = new URLSearchParams(queries);
   const [data, setData] = useState();
   const [page, setPage] = useState(0);
-  const [city, setCity] = useState('국내전체');
+  const [sort, setSort] = useState();
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
@@ -40,11 +40,15 @@ function Find({ setLocationModal, setDateModal }) {
     setPage(target);
   }
 
+  function selectSort(el) {
+    setSort(el);
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
-        await fetch(`http://localhost:8000/findstay${location.search}`, {
-          method: 'GET', // for the test
+        await fetch(`http://${BASE_URL}/findstay${location.search}`, {
+          method: 'GET',
         })
       ).json();
       setData(result.list);
@@ -63,7 +67,6 @@ function Find({ setLocationModal, setDateModal }) {
         <p>머무는 것 자체로 여행이 되는 공간</p>
       </div>
       <Searchbar
-        city={city}
         url={url}
         setPage={setPage}
         queries={queries}
@@ -74,6 +77,7 @@ function Find({ setLocationModal, setDateModal }) {
       <div className={css.findSearchWrapper}>
         <button>SEARCH</button>
       </div>
+
       <div className={css.wrapper}>
         {data &&
           data
