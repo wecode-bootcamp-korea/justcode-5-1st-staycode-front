@@ -38,7 +38,7 @@ function Login() {
     console.log('pw: ', password);
     if (validation(email, password)) {
       console.log('val: ', validation);
-      const loginURL = `http://${BASE_URL}/login`;
+      const loginURL = `http://${BASE_URL}:8000/login`;
       fetch(loginURL, {
         method: 'POST',
         body: JSON.stringify({

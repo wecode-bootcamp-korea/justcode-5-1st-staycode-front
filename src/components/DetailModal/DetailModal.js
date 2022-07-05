@@ -16,7 +16,7 @@ function DetailModal(props) {
   const [disabledDates, setDisabledDates] = useState();
 
   useEffect(() => {
-    fetch(`http://${BASE_URL}/reservation/${roomData}`, { method: 'GET' })
+    fetch(`http://${BASE_URL}:8000/reservation/${roomData}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
         setDisabledDates(
