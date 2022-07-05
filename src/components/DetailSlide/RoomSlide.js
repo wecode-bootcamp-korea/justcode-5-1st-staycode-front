@@ -13,7 +13,7 @@ function RoomSlide(props) {
         <div className={styles.contents}>
           <div className={styles.namePrice}>
             <span>{accoData[0].rooms[seq].name}</span>
-            <span>{accoData[0].rooms[seq].price}</span>
+            <span>₩{accoData[0].rooms[seq].price.toLocaleString('en')}</span>
           </div>
           <div>기준 {accoData[0].rooms[seq].max_guest}명</div>
         </div>
