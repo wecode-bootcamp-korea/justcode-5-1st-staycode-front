@@ -19,7 +19,6 @@ function Find({ setLocationModal, setDateModal }) {
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
-
   function moveRight() {
     setPage(prev => {
       if (prev < maxPage) {

@@ -23,15 +23,14 @@ function Detail() {
     fetch(`http://${BASE_URL}:8000/accomodation/${name}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        console.log('fetch');
         setAccoData(res.data);
-        console.log('fetch_end');
       });
   }, [name]);
-  console.log(search);
+
   if (!accoData) {
     return <div>데이터 없음</div>;
   }
+
   return (
     <div className={styles.container}>
       <Slider
@@ -51,9 +50,6 @@ function Detail() {
       <div className={styles.centerLine} />
       <div className={styles.content}>{accoData[0].content}</div>
       <div className={styles.address}>{accoData[0].location}</div>
-      <div className={styles.map}>
-        <Map accoData={accoData} />
-      </div>
       <DetailFqa
         roomData={[accoData[0].rooms[0], accoData[0].rooms[1]]}
         onOff={true}
