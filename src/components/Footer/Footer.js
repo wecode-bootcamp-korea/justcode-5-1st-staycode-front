@@ -8,7 +8,7 @@ import { TbCopyright } from 'react-icons/tb';
 function Footer() {
   return (
     // <div className={css.container}>footer</div>;
-    <>
+    <div>
       <div className={css.wrapup}>
         <div>
           <div>
@@ -83,7 +83,7 @@ function Footer() {
         </div>
         <div className={css.bottom_line2}>[사업자정보확인]</div>
       </div>
-    </>
+    </div>
   );
 }
 
