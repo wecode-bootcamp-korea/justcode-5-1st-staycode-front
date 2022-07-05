@@ -15,7 +15,7 @@ function Find({ setLocationModal, setDateModal }) {
   const url = new URLSearchParams(queries);
   const [data, setData] = useState();
   const [page, setPage] = useState(0);
-  const [city, setCity] = useState('국내전체');
+  const [sort, setSort] = useState();
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
@@ -38,6 +38,10 @@ function Find({ setLocationModal, setDateModal }) {
 
   function pageJump(target) {
     setPage(target);
+  }
+
+  function selectSort(el) {
+    setSort(el);
   }
 
   useEffect(() => {
@@ -63,7 +67,6 @@ function Find({ setLocationModal, setDateModal }) {
         <p>머무는 것 자체로 여행이 되는 공간</p>
       </div>
       <Searchbar
-        city={city}
         url={url}
         setPage={setPage}
         queries={queries}
@@ -74,6 +77,7 @@ function Find({ setLocationModal, setDateModal }) {
       <div className={css.findSearchWrapper}>
         <button>SEARCH</button>
       </div>
+
       <div className={css.wrapper}>
         {data &&
           data

@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import LocModalforMain from '../Modal/LocModalForMain';
 import DateModalForMain from '../Modal/DateModalForMain';
 
-function Searchbar({ setPage, city, url, queries, setQueries }) {
+function Searchbar({ setPage, url, queries, setQueries }) {
   const options = ['인원', '가격 범위', '스테이 유형', '테마'];
   const [selected, setSelected] = useState();
   const [locModal, setLocModal] = useState(false);
@@ -78,7 +78,7 @@ function Searchbar({ setPage, city, url, queries, setQueries }) {
             <label htmlFor="searchLocation">여행지/숙소</label>
             <input type="text" id="searchLocation" className={css.searchLoc} />
             <button onClick={locModalOn} className={css.toggleModal}>
-              {passedCity || city}
+              {passedCity || '국내전체'}
             </button>
           </div>
           <div
