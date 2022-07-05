@@ -20,7 +20,6 @@
     "react-calendar": "^3.7.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
-    "react-naver-maps": "^0.0.13",
     "react-router-dom": "^6.3.0",
     "sass": "^1.52.3"
   },
