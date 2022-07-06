@@ -5,6 +5,7 @@ import { Link, Navigate, Route, useNavigate } from 'react-router-dom';
 import Home from '../Home/Home';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import JoinMember from './JoinMember';
+import { BASE_URL } from '../../config';
 
 function Login() {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ function Login() {
     console.log('pw: ', password);
     if (validation(email, password)) {
       console.log('val: ', validation);
-      const loginURL = 'http://localhost:10010/login';
+      const loginURL = `http://${BASE_URL}:8000/login`;
       fetch(loginURL, {
         method: 'POST',
         body: JSON.stringify({

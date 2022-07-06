@@ -3,6 +3,7 @@ import styles from './DetailModal.module.scss';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { BASE_URL } from '../../config';
 
 function DetailModal(props) {
   const { open, close, roomData } = props;
@@ -15,7 +16,7 @@ function DetailModal(props) {
   const [disabledDates, setDisabledDates] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:8000/reservation/${roomData}`, { method: 'GET' })
+    fetch(`http://${BASE_URL}:8000/reservation/${roomData}`, { method: 'GET' })
       .then(res => res.json())
       .then(res => {
         setDisabledDates(

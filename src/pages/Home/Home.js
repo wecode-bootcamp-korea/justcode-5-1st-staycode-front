@@ -3,21 +3,21 @@ import MainSlider from '../../components/HOME/MainSlider/MainSlider';
 import OnlyStay from '../../components/HOME/OnlyStay/OnlyStay';
 import EventStay from '../../components/HOME/Event/EventStay';
 import Promotion from '../../components/HOME/Promotion/Promotion';
-
 import css from './Home.module.scss';
+import { BASE_URL } from '../../config';
 
 function Home() {
   const [imgList, setImgList] = useState({});
   const [proEventList, setProEventList] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/slidelist.json')
+    fetch(`http://${BASE_URL}:3000/data/slidelist.json`)
       .then(res => res.json())
       .then(data => setImgList(data));
   }, [setImgList]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/')
+    fetch(`http://${BASE_URL}:8000/home`)
       .then(res => res.json())
       .then(data => setProEventList(data));
   }, [setProEventList]);

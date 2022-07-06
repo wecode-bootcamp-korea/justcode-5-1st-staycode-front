@@ -6,7 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "distribute": "npm i && npm run build && pm2 serve build 3000 --name staycode-front --spa"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -19,7 +20,6 @@
     "react-calendar": "^3.7.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.4.0",
-    "react-naver-maps": "^0.0.13",
     "react-router-dom": "^6.3.0",
     "sass": "^1.52.3"
   },
@@ -27,6 +27,7 @@
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "pm2": "^5.2.0",
     "prettier": "^2.6.2",
     "react-scripts": "5.0.1"
   },

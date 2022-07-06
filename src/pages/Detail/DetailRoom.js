@@ -4,6 +4,7 @@ import DetailSearchBar from '../../components/DetailSearchBar/DetailSearchBar';
 import DetailFqa from '../../components/DetailFqa/DetailFqa';
 import Slider from '../../components/DetailSlide/Slider';
 import { useParams, useLocation, Link } from 'react-router-dom';
+import { BASE_URL } from '../../config';
 
 function DetailRoom() {
   const buttonOnOff = true;
@@ -17,7 +18,7 @@ function DetailRoom() {
   //데이터
   const [roomData, setRoomData] = useState();
   useEffect(() => {
-    fetch(`http://localhost:8000/room/${roomid}`, {
+    fetch(`http://${BASE_URL}:8000/room/${roomid}`, {
       method: 'GET',
     })
       .then(res => res.json())
