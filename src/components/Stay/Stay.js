@@ -44,6 +44,9 @@ function Stay({ data }) {
       <div className={css.infoWrapper}>
         <div className={css.stayInfo}>
           <span>{data.city}</span>
+          <span>{`기준 ${Math.min(...data.guests)}명 / 최대 ${Math.max(
+            ...data.guests
+          )}명`}</span>
           <span className={css.prices}>{`₩${Math.min(
             ...data.prices
           ).toLocaleString('en')} ~ ₩${Math.max(...data.prices).toLocaleString(

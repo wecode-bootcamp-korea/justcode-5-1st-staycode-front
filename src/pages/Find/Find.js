@@ -9,7 +9,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import Stay from '../../components/Stay/Stay';
 import Searchbar from '../../components/Searchbar/Searchbar';
 import { BASE_URL } from '../../config';
-function Find({ setLocationModal, setDateModal }) {
+function Find() {
   const location = useLocation();
   const sortOption = [
     { name: '기본순', value: 'default' },
@@ -18,34 +18,31 @@ function Find({ setLocationModal, setDateModal }) {
   ];
   const [queries, setQueries] = useSearchParams();
   const url = new URLSearchParams(queries);
+  const passedPage = queries.get('page');
   const [data, setData] = useState();
-  const [page, setPage] = useState(0);
   const [sort, setSort] = useState();
   const OFFSET = 4;
   const maxPage = data && Math.ceil(data.length / OFFSET);
   const pageArr = Array.from({ length: maxPage }, (_, i) => i + 1);
+  const [search, setSearch] = useState('');
   function moveRight() {
-    setPage(prev => {
-      if (prev < maxPage) {
-        return prev + 1;
-      } else return prev;
-    });
+    if (passedPage * 1 < maxPage) urlChange('page', Number(passedPage) + 1);
   }
 
   function moveLeft() {
-    setPage(prev => {
-      if (0 < prev) {
-        return prev - 1;
-      } else return prev;
-    });
+    if (1 < passedPage) urlChange('page', Number(passedPage) - 1);
   }
 
-  function pageJump(target) {
-    setPage(target);
+  function pageJump(el) {
+    urlChange('page', el);
   }
 
   function selectSort(el) {
     setSort(el);
+  }
+
+  function onClick(target) {
+    urlChange('search', target);
   }
 
   function urlChange(target1, value1, target2, value2) {
@@ -76,7 +73,7 @@ function Find({ setLocationModal, setDateModal }) {
           method: 'GET',
         })
       ).json();
-      setData(result);
+      setData(result.data);
     };
     fetchData();
   }, [location.search]);
@@ -84,6 +81,13 @@ function Find({ setLocationModal, setDateModal }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [data]);
+
+  useEffect(() => {
+    if (!passedPage) {
+      urlChange('page', '1');
+    }
+  }, [location.search, passedPage]);
+
   return (
     <>
       <div className={css.findHeader}>
@@ -91,15 +95,19 @@ function Find({ setLocationModal, setDateModal }) {
         <p>머무는 것 자체로 여행이 되는 공간</p>
       </div>
       <Searchbar
-        setPage={setPage}
+        search={search}
+        setSearch={setSearch}
         queries={queries}
-        setQueries={setQueries}
         urlChange={urlChange}
-        setLocationModal={setLocationModal}
-        setDateModal={setDateModal}
       />
       <div className={css.findSearchWrapper}>
-        <button>SEARCH</button>
+        <button
+          onClick={() => {
+            onClick(search);
+          }}
+        >
+          SEARCH
+        </button>
       </div>
       <div className={css.orderWrapper}>
         {sortOption.map(el => (
@@ -126,7 +134,7 @@ function Find({ setLocationModal, setDateModal }) {
         ))}
       </div>
       <div className={css.wrapper}>
-        {data && data.map(el => <Stay key={el.id} data={el} />)}
+        {data && data.list.map(el => <Stay key={el.id} data={el} />)}
       </div>
       <div className={css.pageMove}>
         <FontAwesomeIcon
@@ -136,9 +144,9 @@ function Find({ setLocationModal, setDateModal }) {
         />
         {pageArr.map(el => (
           <span
-            onClick={() => pageJump(el - 1)}
+            onClick={() => pageJump(el)}
             className={
-              el === page + 1
+              el === Number(passedPage)
                 ? `${css.pageNum} ${css.onActive}`
                 : `${css.pageNum}`
             }
