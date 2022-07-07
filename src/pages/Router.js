@@ -31,15 +31,7 @@ function Router() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/findstay/:name" element={<Detail />} />
         <Route path="/findstay/room/:roomid" element={<DetailRoom />} />
-        <Route
-          path="/findstay"
-          element={
-            <Find
-              setLocationModal={setLocationModal}
-              setDateModal={setDateModal}
-            />
-          }
-        />
+        <Route path="/findstay" element={<Find />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/reservation/:roomid" element={<Reservation />} />
       </Routes>
