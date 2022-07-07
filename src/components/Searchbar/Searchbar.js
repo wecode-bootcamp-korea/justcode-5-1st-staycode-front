@@ -13,11 +13,10 @@ import { Link } from 'react-router-dom';
 import LocModalforMain from '../Modal/LocModalForMain';
 import DateModalForMain from '../Modal/DateModalForMain';
 
-function Searchbar({ setPage, url, queries, setQueries, urlChange }) {
+function Searchbar({ search, setSearch, queries, urlChange }) {
   const options = ['인원', '가격 범위', '스테이 유형', '테마'];
   const [selected, setSelected] = useState();
   const [locModal, setLocModal] = useState(false);
-  const [search, setSearch] = useState('');
   const [dateModalForMain, setDateModalForMain] = useState(false);
   const passedCity = queries.get('city');
   const passedCheckIn = queries.get('check_in');
@@ -48,10 +47,6 @@ function Searchbar({ setPage, url, queries, setQueries, urlChange }) {
     setLocModal(true);
   };
 
-  const resetPage = () => {
-    setPage(0);
-  };
-
   const onchange = e => {
     setSearch(e.target.value);
   };
@@ -59,7 +54,6 @@ function Searchbar({ setPage, url, queries, setQueries, urlChange }) {
   const onSubmit = e => {
     e.preventDefault();
     urlChange('search', search);
-    setSearch('');
   };
 
   return (
@@ -103,7 +97,7 @@ function Searchbar({ setPage, url, queries, setQueries, urlChange }) {
             />
           </div>
           <div>
-            <Link to="/findstay" onClick={resetPage} className={css.reset}>
+            <Link to="/findstay" className={css.reset}>
               <FontAwesomeIcon icon={faArrowRotateLeft} />
             </Link>
           </div>
