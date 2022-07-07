@@ -4,6 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
+import { useLocation } from 'react-router-dom';
 
 function DatemodalInReservation({
   setDateModal,
@@ -12,7 +13,13 @@ function DatemodalInReservation({
   setEndDataTime,
   setStartDataTime,
 }) {
-  const [date, setDate] = useState(new Date());
+  const location = useLocation();
+  const { search } = location;
+  const shi = new URLSearchParams(search);
+  const schi = shi.get('check_in');
+  const sho = new URLSearchParams(search);
+  const scho = sho.get('check_out');
+  const [date, setDate] = useState([new Date(schi), new Date(scho)]);
 
   function hideDateModal() {
     setDateModal(false);
