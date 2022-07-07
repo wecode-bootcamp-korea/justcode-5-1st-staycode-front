@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import css from './Stay.module.scss';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -13,7 +13,7 @@ function Stay({ data }) {
   const [page, setPage] = useState(0);
   const finalPage = data.images.length - 1;
   const navigate = useNavigate();
-
+  const location = useLocation();
   const moveRight = () => {
     setPage(prev => {
       if (prev < finalPage) {
@@ -49,7 +49,13 @@ function Stay({ data }) {
           ).toLocaleString('en')} ~ ₩${Math.max(...data.prices).toLocaleString(
             'en'
           )}`}</span>
-          <Link to={`/findstay/${data.name}`}>예약하기</Link>
+          <div
+            onClick={() => {
+              navigate(`/findstay/${data.id}${location.search}`);
+            }}
+          >
+            예약하기
+          </div>
         </div>
         <div className={css.stayImageWrapper}>
           <FontAwesomeIcon
@@ -74,7 +80,7 @@ function Stay({ data }) {
             {data.images.map(el => (
               <div
                 onClick={() => {
-                  navigate(`/findstay/${data.id}`);
+                  navigate(`/findstay/${data.id}${location.search}`);
                 }}
                 className={css.stayImage}
                 key={el}
