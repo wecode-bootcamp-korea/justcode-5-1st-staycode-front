@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-function LocModalforMain({ setLocModal, url, setQueries }) {
+function LocModalforMain({ setLocModal, urlChange }) {
   const [city, setCity] = useState('');
   const regions = ['국내전체', '서울', '인천', '부산', '대전', '제주'];
   const navigate = useNavigate();
@@ -25,15 +25,10 @@ function LocModalforMain({ setLocModal, url, setQueries }) {
     navigate(`/findStay?city=${city}`);
     setLocModal(false);
   }
-
-  function inspect(target, value) {
-    if (url.has(target)) {
-      url.set(target, value);
-      setQueries(url.toString());
-    } else {
-      setQueries(url.toString() + `&${target}=${value}`);
-    }
-  }
+  const urlChange2 = () => {
+    if (city === '국내전체') return;
+    else urlChange('city', city);
+  };
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -82,7 +77,7 @@ function LocModalforMain({ setLocModal, url, setQueries }) {
         <div className={css.modalSubmit}>
           <button
             onClick={() => {
-              inspect('city', city);
+              urlChange2();
               hideLocationModal();
               setCity('');
             }}

@@ -165,41 +165,24 @@
   justify-content: end;
   padding-bottom: 10px;
   align-items: center;
-  .high {
+  div {
     display: flex;
     align-items: center;
-    div {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #999999;
-      margin-right: 7px;
-    }
-    span {
-      font-size: 14px;
-      color: #999999;
-      &:hover {
-        cursor: pointer;
-      }
+    margin-right: 10px;
+    &:hover {
+      cursor: pointer;
     }
   }
-  .low {
-    display: flex;
-    align-items: center;
-    div {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #999999;
-      margin-right: 7px;
-      margin-left: 7px;
-    }
-    span {
-      font-size: 14px;
-      color: #999999;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
+}
+.orderOptionDot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: #aaaaaa;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+.orderOption {
+  color: #aaaaaa;
+  font-size: 14px;
 }

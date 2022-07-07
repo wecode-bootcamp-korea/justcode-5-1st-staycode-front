@@ -5,21 +5,11 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 
-function DateModalForMain({ setDateModalForMain, url, setQueries }) {
+function DateModalForMain({ setDateModalForMain, urlChange }) {
   const [date, setDate] = useState(new Date());
 
   function hideDateModal() {
     setDateModalForMain(false);
-  }
-
-  function inspect(target1, target2, value1, value2) {
-    if (url.has(target1)) {
-      url.set(target1, value1);
-      url.set(target2, value2);
-      setQueries(url.toString());
-    } else {
-      setQueries(url.toString() + `&${target1}=${value1}&${target2}=${value2}`);
-    }
   }
 
   function dateParser(target) {
@@ -64,10 +54,10 @@ function DateModalForMain({ setDateModalForMain, url, setQueries }) {
           <button
             onClick={() => {
               hideDateModal();
-              inspect(
+              urlChange(
                 'check_in',
-                'check_out',
                 dateParser(date[0]),
+                'check_out',
                 dateParser(date[1])
               );
             }}
