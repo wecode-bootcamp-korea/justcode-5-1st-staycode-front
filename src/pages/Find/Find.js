@@ -11,6 +11,11 @@ import Searchbar from '../../components/Searchbar/Searchbar';
 import { BASE_URL } from '../../config';
 function Find({ setLocationModal, setDateModal }) {
   const location = useLocation();
+  const sortOption = [
+    { name: '기본순', value: 'default' },
+    { name: '높은 가격순', value: 'high' },
+    { name: '낮은 가격순', value: 'row' },
+  ];
   const [queries, setQueries] = useSearchParams();
   const url = new URLSearchParams(queries);
   const [data, setData] = useState();
@@ -43,6 +48,27 @@ function Find({ setLocationModal, setDateModal }) {
     setSort(el);
   }
 
+  function urlChange(target1, value1, target2, value2) {
+    if (!target2) {
+      if (url.has(target1)) {
+        url.set(target1, value1);
+        setQueries(url.toString());
+      } else {
+        setQueries(url.toString() + `&${target1}=${value1}`);
+      }
+    } else {
+      if (url.has(target1)) {
+        url.set(target1, value1);
+        url.set(target2, value2);
+        setQueries(url.toString());
+      } else {
+        setQueries(
+          url.toString() + `&${target1}=${value1}&${target2}=${value2}`
+        );
+      }
+    }
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await (
@@ -50,7 +76,7 @@ function Find({ setLocationModal, setDateModal }) {
           method: 'GET',
         })
       ).json();
-      setData(result.list);
+      setData(result);
     };
     fetchData();
   }, [location.search]);
@@ -58,7 +84,6 @@ function Find({ setLocationModal, setDateModal }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [data]);
-
   return (
     <>
       <div className={css.findHeader}>
@@ -66,22 +91,42 @@ function Find({ setLocationModal, setDateModal }) {
         <p>머무는 것 자체로 여행이 되는 공간</p>
       </div>
       <Searchbar
-        url={url}
         setPage={setPage}
         queries={queries}
         setQueries={setQueries}
+        urlChange={urlChange}
         setLocationModal={setLocationModal}
         setDateModal={setDateModal}
       />
       <div className={css.findSearchWrapper}>
         <button>SEARCH</button>
       </div>
-
+      <div className={css.orderWrapper}>
+        {sortOption.map(el => (
+          <div
+            onClick={() => {
+              selectSort(el.name);
+              urlChange('order', el.value);
+            }}
+            key={el}
+          >
+            <span
+              className={css.orderOptionDot}
+              style={{
+                backgroundColor: sort === el.name ? 'black' : '#aaaaaa',
+              }}
+            />
+            <span
+              className={css.orderOption}
+              style={{ color: sort === el.name ? 'black' : '#aaaaaa' }}
+            >
+              {el.name}
+            </span>
+          </div>
+        ))}
+      </div>
       <div className={css.wrapper}>
-        {data &&
-          data
-            .slice(page * OFFSET, OFFSET + page * OFFSET)
-            .map(el => <Stay key={el.id} data={el} />)}
+        {data && data.map(el => <Stay key={el.id} data={el} />)}
       </div>
       <div className={css.pageMove}>
         <FontAwesomeIcon

@@ -13,10 +13,11 @@ import { Link } from 'react-router-dom';
 import LocModalforMain from '../Modal/LocModalForMain';
 import DateModalForMain from '../Modal/DateModalForMain';
 
-function Searchbar({ setPage, url, queries, setQueries }) {
+function Searchbar({ setPage, url, queries, setQueries, urlChange }) {
   const options = ['인원', '가격 범위', '스테이 유형', '테마'];
   const [selected, setSelected] = useState();
   const [locModal, setLocModal] = useState(false);
+  const [search, setSearch] = useState('');
   const [dateModalForMain, setDateModalForMain] = useState(false);
   const passedCity = queries.get('city');
   const passedCheckIn = queries.get('check_in');
@@ -50,33 +51,38 @@ function Searchbar({ setPage, url, queries, setQueries }) {
   const resetPage = () => {
     setPage(0);
   };
-  const urlChange = (target1, value1, target2, value2) => {
-    if (!target2) {
-      if (url.has(target1)) {
-        url.set(target1, value1);
-        setQueries(url.toString());
-      } else {
-        setQueries(url.toString() + `&${target1}=${value1}`);
-      }
-    } else {
-      if (url.has(target1)) {
-        url.set(target1, value1);
-        url.set(target2, value2);
-        setQueries(url.toString());
-      } else {
-        setQueries(
-          url.toString() + `&${target1}=${value1}&${target2}=${value2}`
-        );
-      }
-    }
+
+  const onchange = e => {
+    setSearch(e.target.value);
   };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    urlChange('search', search);
+    setSearch('');
+  };
+
   return (
     <>
       <div className={css.searchWrapper}>
         <div className={css.searchFirstRow}>
           <div>
-            <label htmlFor="searchLocation">여행지/숙소</label>
-            <input type="text" id="searchLocation" className={css.searchLoc} />
+            <form
+              onSubmit={e => {
+                onSubmit(e);
+              }}
+            >
+              <label htmlFor="searchLocation">여행지/숙소</label>
+              <input
+                onChange={e => {
+                  onchange(e);
+                }}
+                type="text"
+                id="searchLocation"
+                className={css.searchLoc}
+                value={search}
+              />
+            </form>
             <button onClick={locModalOn} className={css.toggleModal}>
               {passedCity || '국내전체'}
             </button>
@@ -144,16 +150,11 @@ function Searchbar({ setPage, url, queries, setQueries }) {
         </div>
       </div>
       {locModal ? (
-        <LocModalforMain
-          url={url}
-          setQueries={setQueries}
-          setLocModal={setLocModal}
-        />
+        <LocModalforMain urlChange={urlChange} setLocModal={setLocModal} />
       ) : dateModalForMain ? (
         <DateModalForMain
           setDateModalForMain={setDateModalForMain}
-          url={url}
-          setQueries={setQueries}
+          urlChange={urlChange}
         />
       ) : null}
     </>
