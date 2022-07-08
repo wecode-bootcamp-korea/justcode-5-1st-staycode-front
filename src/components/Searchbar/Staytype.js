@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import css from './Staytype.module.scss';
-function Staytype({ selected, exit, urlChange }) {
+function Staytype({ selected, exit, urlChange, staychecked, setStaychecked }) {
   const types = ['게스트하우스', '펜션', '한옥', '호텔', '독채', '리조트'];
-  const [checked, setChecked] = useState([]);
 
   const onClick = e => {
-    if (!checked.includes(e)) {
-      setChecked(prev => prev.concat(e));
+    if (!staychecked.includes(e)) {
+      setStaychecked(prev => prev.concat(e));
     } else {
-      setChecked(prev => {
+      setStaychecked(prev => {
         return prev.filter(el => el !== e);
       });
     }
@@ -28,13 +26,18 @@ function Staytype({ selected, exit, urlChange }) {
         {types.map(el => (
           <div key={el}>
             <label htmlFor={el}>{el}</label>
-            <input type="checkbox" id={el} onClick={() => onClick(el)} />
+            <input
+              type="checkbox"
+              checked={staychecked.includes(el)}
+              id={el}
+              onClick={() => onClick(el)}
+            />
           </div>
         ))}
       </div>
       <button
         onClick={() => {
-          urlChange('stay_type', checked.join());
+          urlChange('stay_type', staychecked.join());
           exit();
         }}
         className={css.applyButton}
