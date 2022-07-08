@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import css from './Theme.module.scss';
 
-function Theme({ selected, exit, urlChange }) {
+function Theme({ selected, exit, urlChange, themeChecked, setThemechecked }) {
   const themes = ['도심속휴식', '사색', '정적인휴식', '한옥', '가족여행'];
-  const [checked, setChecked] = useState([]);
 
   const onClick = e => {
-    if (!checked.includes(e)) {
-      setChecked(prev => prev.concat(e));
+    if (!themeChecked.includes(e)) {
+      setThemechecked(prev => prev.concat(e));
     } else {
-      setChecked(prev => {
+      setThemechecked(prev => {
         return prev.filter(el => el !== e);
       });
     }
@@ -29,13 +28,17 @@ function Theme({ selected, exit, urlChange }) {
         {themes.map(el => (
           <div key={el}>
             <label htmlFor={el}>{el}</label>
-            <input type="checkbox" onClick={() => onClick(el)} />
+            <input
+              type="checkbox"
+              onClick={() => onClick(el)}
+              checked={themeChecked.includes(el)}
+            />
           </div>
         ))}
       </div>
       <button
         onClick={() => {
-          urlChange('theme', checked.join());
+          urlChange('theme', themeChecked.join());
           exit();
         }}
         className={css.applyButton}

@@ -1,9 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import css from './Locationmodal.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-function Locationmodal({ setLocationModal }) {
+import { tileProps } from 'react-calendar/dist/umd/shared/propTypes';
+
+function CommonLocModal({ modalSubmit }) {
   const [city, setCity] = useState('');
   const regions = ['국내전체', '서울', '인천', '부산', '대전', '제주'];
   const navigate = useNavigate();
@@ -70,20 +67,12 @@ function Locationmodal({ setLocationModal }) {
             })}
           </ul>
         </div>
-        <div className={css.modalSubmit}>
-          <Link
-            onClick={() => {
-              setLocationModal();
-              setCity('');
-            }}
-            to={`/findstay?city=${city}`}
-          >
-            SEARCH
-          </Link>
-        </div>
+        <div className={css.modalSubmit}>{modalSubmit}</div>
       </div>
     </>
   );
 }
 
-export default Locationmodal;
+ex
+// 헤더에서 불렀느냐 아니면 메인에서 불렀느냐
+<CommonLocModal modalSubmit={} />;

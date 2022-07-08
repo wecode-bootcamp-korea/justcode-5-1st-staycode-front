@@ -18,6 +18,8 @@ function Searchbar({ search, setSearch, queries, urlChange }) {
   const [selected, setSelected] = useState();
   const [locModal, setLocModal] = useState(false);
   const [dateModalForMain, setDateModalForMain] = useState(false);
+  const [staychecked, setStaychecked] = useState([]);
+  const [themeChecked, setThemechecked] = useState([]);
   const passedCity = queries.get('city');
   const passedCheckIn = queries.get('check_in');
   const passedCheckOut = queries.get('check_out');
@@ -28,7 +30,6 @@ function Searchbar({ search, setSearch, queries, urlChange }) {
   const passedTheme = queries.get('theme');
   const passedTypes = passedType && passedType.split(',');
   const passedThemes = passedTheme && passedTheme.split(',');
-
   const changeOption = el => {
     setSelected(prev => {
       if (prev !== el) {
@@ -136,10 +137,22 @@ function Searchbar({ search, setSearch, queries, urlChange }) {
             <Price urlChange={urlChange} selected={selected} exit={exit} />
           )}
           {selected === '스테이 유형' && (
-            <Staytype urlChange={urlChange} selected={selected} exit={exit} />
+            <Staytype
+              urlChange={urlChange}
+              staychecked={staychecked}
+              setStaychecked={setStaychecked}
+              selected={selected}
+              exit={exit}
+            />
           )}
           {selected === '테마' && (
-            <Theme urlChange={urlChange} selected={selected} exit={exit} />
+            <Theme
+              urlChange={urlChange}
+              selected={selected}
+              exit={exit}
+              themeChecked={themeChecked}
+              setThemechecked={setThemechecked}
+            />
           )}
         </div>
       </div>
