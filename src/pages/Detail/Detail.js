@@ -26,7 +26,6 @@ function Detail() {
         setAccoData(res.data);
       });
   }, [name]);
-
   if (!accoData) {
     return <div>데이터 없음</div>;
   }

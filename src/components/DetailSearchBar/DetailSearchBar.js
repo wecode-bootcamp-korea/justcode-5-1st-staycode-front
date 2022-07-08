@@ -6,7 +6,7 @@ import DetailModal from '../DetailModal/DetailModal';
 import { Link } from 'react-router-dom';
 
 function DetailSearchBar(props) {
-  const { buttonOnOff, roomData } = props;
+  const { buttonOnOff, roomData, search } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -24,7 +24,7 @@ function DetailSearchBar(props) {
       </button>
       <DetailModal open={modalOpen} close={closeModal} roomData={roomData} />
       {buttonOnOff === true && (
-        <Link to={`/reservation/${roomData}`}>
+        <Link to={`/reservation/${roomData}${search}`}>
           <button className={styles.payBtn}>결제하기</button>
         </Link>
       )}

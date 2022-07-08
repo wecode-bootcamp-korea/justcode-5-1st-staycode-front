@@ -12,9 +12,12 @@ function Reservation() {
 
   const location = useLocation();
   const { search } = location;
+  const shi = new URLSearchParams(search);
+  const schi = shi.get('check_in');
+  const sho = new URLSearchParams(search);
+  const scho = sho.get('check_out');
 
   const token = localStorage.getItem('token');
-
   console.log('token', token);
 
   //데이터
@@ -22,9 +25,10 @@ function Reservation() {
   const [roomData, setRoomData] = useState();
   const [accomData, setAccomData] = useState();
 
-  const [startData, setStartData] = useState();
-  const [endData, setEndData] = useState();
-  const [stayDays, setStayDays] = useState(0);
+  const [startData, setStartData] = useState(schi);
+  const [endData, setEndData] = useState(scho);
+  const [stayDays, setStayDays] = useState();
+
   const [startDataTime, setStartDataTime] = useState();
   const [endDataTime, setEndDataTime] = useState();
 

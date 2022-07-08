@@ -4,12 +4,19 @@ import moment from 'moment';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { BASE_URL } from '../../config';
+import { useLocation } from 'react-router-dom';
 
 function DetailModal(props) {
   const { open, close, roomData } = props;
+  const location = useLocation();
+  const { search } = location;
+  const shi = new URLSearchParams(search);
+  const schi = shi.get('check_in');
+  const sho = new URLSearchParams(search);
+  const scho = sho.get('check_out');
 
   //어떤 날짜를 선택했는지 담은 state date[0]는 체크인 , data[1]은 체크아웃
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState([new Date(schi), new Date(scho)]);
 
   //예약이 안되는 날짜 담은 state
 
