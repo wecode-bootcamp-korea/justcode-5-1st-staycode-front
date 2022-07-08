@@ -43,7 +43,7 @@ function JoinMember() {
       return false;
     }
 
-    if (name.length < 5) {
+    if (name.length < 3) {
       return false;
     }
 
