@@ -1,5 +1,9 @@
 # stayfolio 클론프로젝트 - staycode
 
+
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/57984643/178396999-be385595-1dc9-4787-8de0-55cdbfa2e361.gif)
+
+
 ## [프론트 역할배분]
 
 ### 1. Main페이지 - 상민
